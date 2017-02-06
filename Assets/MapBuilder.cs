@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MapBuilder : MonoBehaviour {
 
-	int GRID_WIDTH = 50; 
-	int GRID_HEIGHT = 50; 
-	float CHANCE_TILE_LIVE = 0.45f;
-	GameObject[] floorTiles;
-
+	int GRID_WIDTH = 30; 
+	int GRID_HEIGHT = 30; 
+	float CHANCE_TILE_LIVE = 0.35f;
+	private Transform boardHolder; 
+	private List <Vector3> gridPositions = new List<Vector3> ();
+	public GameObject[] floorTiles; 
+	public GameObject[] wallTiles;
 
 	// Use this for initialization
 	void Start () {
@@ -87,5 +89,32 @@ public class MapBuilder : MonoBehaviour {
 		}
 
 		return cellMap;
+	}
+
+	void BoardSetup() 
+	{ 
+		boardHolder = new GameObject ("Board").transform; 
+		bool[,] cellMap = generateMap ();
+		GameObject toInstantiate;
+
+		for (int x = -1; x < GRID_WIDTH + 1; x++) {
+			for (int y = -1; y < GRID_HEIGHT + 1; y++) {
+				if (x == -1 || x == GRID_WIDTH || y == -1 || y == GRID_HEIGHT)
+					toInstantiate = wallTiles [Random.Range (0, wallTiles.Length)];
+				else if (cellMap [x, y])
+					toInstantiate = floorTiles [Random.Range (0, floorTiles.Length)];
+				else
+					toInstantiate = wallTiles [Random.Range (0, wallTiles.Length)];
+
+				GameObject instance = Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
+
+				instance.transform.SetParent (boardHolder);
+			}
+		}
+	}
+
+	public void SetupScene (int level)
+	{
+		BoardSetup (); 
 	}
 }
