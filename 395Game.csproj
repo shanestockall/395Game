@@ -83,8 +83,10 @@
     <Compile Include="Assets\Completed\Scripts\Player.cs" />
     <Compile Include="Assets\Completed\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Completed\Scripts\Wall.cs" />
+    <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\MapBuilder.cs" />
     <Compile Include="Assets\PlayerController.cs" />
+    <Compile Include="Assets\Wall.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\OFL.txt" />

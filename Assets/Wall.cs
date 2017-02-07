@@ -13,4 +13,15 @@ public class Wall : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    //OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //Check if the tag of the trigger collided with is Exit.
+        if (other.tag == "Player")
+        {
+            Debug.Log("hey!");
+        }
+
+    }
 }
