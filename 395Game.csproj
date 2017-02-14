@@ -83,6 +83,7 @@
     <Compile Include="Assets\Completed\Scripts\Player.cs" />
     <Compile Include="Assets\Completed\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Completed\Scripts\Wall.cs" />
+    <Compile Include="Assets\EnemyController.cs" />
     <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\MapBuilder.cs" />
     <Compile Include="Assets\PlayerController.cs" />
