@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Animator animator;
+	public bool isFlipped = false; 
 
     // Use this for initialization
     void Start()
@@ -36,12 +37,20 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
 
-            transform.position -= transform.right.normalized * 5 * Time.deltaTime;
+            transform.position -= transform.right.normalized * -5 * Time.deltaTime;
+			if (!isFlipped) {
+				transform.localRotation = Quaternion.Euler (0f, 180f, 0f);
+				isFlipped = true;
+			}
         }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += transform.right.normalized * 5 * Time.deltaTime;
+			if (isFlipped) {
+				transform.localRotation = Quaternion.Euler (0f, 0f, 0f);
+				isFlipped = false;
+			}
         }
 
     }
