@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour {
 	void InitGame(){
 
 		doingSetup = true; 
+
 		boardScript.SetupScene (level);
 	}
 
