@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     ///  Called once per grade
     /// </summary>
-    internal void Update()
+    internal void FixedUpdate()
     {
     
 
