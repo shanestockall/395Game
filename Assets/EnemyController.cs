@@ -48,17 +48,20 @@ public class EnemyController : MonoBehaviour {
             rigi.velocity += directions[rand] * Time.deltaTime * 5;
 			if (transform.position.x > 30 || transform.position.x < 0 || transform.position.y > 30 || transform.position.y < 0)
 				transform.position = FindFreeLocation();
-            Debug.Log(transform.position);
+            
 		}
 
 	}
 
-	//OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
-	private void OnTriggerEnter2D(Collider2D other)
+ 
+
+    //OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
+    private void OnCollisionEnter2D(Collision2D other)
 	{
 		//Check if the tag of the trigger collided with is Exit.
-		if (other.tag == "Player")
+		if (other.gameObject.tag == "Player")
 		{
+            Debug.Log("collision");
 			transform.position = FindFreeLocation();
 			if (count > 4)
 			{
