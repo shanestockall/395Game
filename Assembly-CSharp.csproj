@@ -60,7 +60,9 @@
      <Compile Include="Assets\MapBuilder.cs" />
      <Compile Include="Assets\NewBehaviourScript.cs" />
      <Compile Include="Assets\PlayerController.cs" />
+     <Compile Include="Assets\SuperBasicGeneratorScript.cs" />
      <Compile Include="Assets\Wall.cs" />
+     <Compile Include="Assets\sceneMan.cs" />
      <None Include="Assets\Fonts\OFL.txt" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
