@@ -10,11 +10,12 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 	public bool isFlipped = false; 
 
-    // Use this for initialization
+    // Use this forinitialization
     void Start()
     {
         animator = GetComponent<Animator>();
     }
+
 
     /// <summary>
     ///  Called once per grade
@@ -23,18 +24,18 @@ public class PlayerController : MonoBehaviour
     {
     
 
-        if (Input.GetKey(KeyCode.UpArrow))
+		if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {   
             transform.position += transform.up.normalized * 5 * Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
+		if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
 
             transform.position -= transform.up.normalized * 5 * Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
 
             transform.position -= transform.right.normalized * -5 * Time.deltaTime;
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
 			}
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             transform.position += transform.right.normalized * 5 * Time.deltaTime;
 			if (isFlipped) {
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
 				isFlipped = false;
 			}
         }
+
 
     }
 
@@ -62,34 +64,29 @@ public class PlayerController : MonoBehaviour
         Vector2 right = transform.right.normalized;
 
         //Check if the tag of the trigger collided with is Exit.
-        if (other.tag == "Wall")
-        {
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                transform.position += transform.up.normalized * 0 * Time.deltaTime;
-            }
+		if (other.tag == "Wall") {
+			if (Input.GetKey (KeyCode.UpArrow)) {
+				transform.position += transform.up.normalized * 0 * Time.deltaTime;
+			}
 
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
+			if (Input.GetKey (KeyCode.DownArrow)) {
             
-                transform.position -= transform.up.normalized * 0 * Time.deltaTime;
-            }
+				transform.position -= transform.up.normalized * 0 * Time.deltaTime;
+			}
 
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
+			if (Input.GetKey (KeyCode.LeftArrow)) {
 
-                rigi.velocity -= right * 0 * Time.deltaTime;
-            }
+				rigi.velocity -= right * 0 * Time.deltaTime;
+			}
 
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-               rigi.velocity  += right * 0 * Time.deltaTime;
-            }
+			if (Input.GetKey (KeyCode.RightArrow)) {
+				rigi.velocity += right * 0 * Time.deltaTime;
+			}
 
-        }
-        else
-            animator.SetTrigger("playerChop");
-
+		} else {
+			animator.SetTrigger ("playerChop");
+		}
+			
     }
 
 }

@@ -125,25 +125,64 @@ public class MapBuilder : MonoBehaviour
         boardHolder = new GameObject("Board").transform;
         bool[,] cellMap = generateMap();
         GameObject toInstantiate;
+		int numCaves = 1;
 
-        for (int x = -1; x < GRID_WIDTH + 1; x++)
-        {
-            for (int y = -1; y < GRID_HEIGHT + 1; y++)
-            {
-                if (x == -1 || x == GRID_WIDTH || y == -1 || y == GRID_HEIGHT)
-                {
-                    toInstantiate = wallTiles[Random.Range(0, wallTiles.Length)];
-                }
-                else if (cellMap[x, y])
-                    toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
-                else
-                    toInstantiate = wallTiles[Random.Range(0, wallTiles.Length)];
+		while (numCaves < 3) {
 
-                GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
+	        for (int x = -1; x < GRID_WIDTH + 1; x++)
+	        {
+	            for (int y = -1; y < GRID_HEIGHT + 1; y++)
+	            {
+	                if (x == -1 || x == GRID_WIDTH || y == -1 || y == GRID_HEIGHT)
+	                {
+						if ( y == 26 && x == GRID_WIDTH || y == 25 && x == GRID_WIDTH || y < 6 && x == -1 && numCaves > 1 && numCaves <= 7 ) { 
+							toInstantiate = floorTiles [Random.Range (0, floorTiles.Length)];
+						} else { 
+							toInstantiate = wallTiles [Random.Range (0, wallTiles.Length)];
+						}
+	                }
+	                else if (cellMap[x, y])
+	                    toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
+	                else
+	                    toInstantiate = wallTiles[Random.Range(0, wallTiles.Length)];
 
-                instance.transform.SetParent(boardHolder);
-            }
-        }
+					if (x == GRID_WIDTH && y == 23) {
+						for (int x1 = 1; x1 < 10; x1++){
+							for (int y1 = 1; y1 < 13; y1++){
+								if (x1 == 1 && y1 == 3 || x1 == 1 && y1 == 2 || x1 == 2 && y1 == 3) {
+									GameObject myInstance = Instantiate (floorTiles [Random.Range (0, floorTiles.Length)], new Vector3 (x * numCaves + x1, y * numCaves + y1, 0), Quaternion.identity) as GameObject;
+									myInstance.transform.SetParent (boardHolder);
+								} else if (x1 == 1) {
+									GameObject myInstance = Instantiate (wallTiles [Random.Range (0, wallTiles.Length)], new Vector3 (x * numCaves + x1, y * numCaves + y1, 0), Quaternion.identity) as GameObject;
+									myInstance.transform.SetParent (boardHolder);
+								} else if (y1 == 1) {
+									GameObject myInstance = Instantiate (wallTiles [Random.Range (0, wallTiles.Length)], new Vector3 (x * numCaves + x1, y * numCaves + y1 - 1, 0), Quaternion.identity) as GameObject;
+									myInstance.transform.SetParent (boardHolder);
+									GameObject myInstance1 = Instantiate (floorTiles [Random.Range (0, floorTiles.Length)], new Vector3 (x * numCaves + x1, y * numCaves + y1, 0), Quaternion.identity) as GameObject;
+									myInstance1.transform.SetParent (boardHolder);
+								} else if (y1 == 12){
+									GameObject myInstance = Instantiate (wallTiles [Random.Range (0, wallTiles.Length)], new Vector3 (x * numCaves + x1, y * numCaves + y1, 0), Quaternion.identity) as GameObject;
+									myInstance.transform.SetParent (boardHolder);
+								} else if (x1 == 9 && y1 < 5){
+									GameObject myInstance = Instantiate (wallTiles [Random.Range (0, wallTiles.Length)], new Vector3 (x * numCaves + x1, y * numCaves + y1, 0), Quaternion.identity) as GameObject;
+									myInstance.transform.SetParent (boardHolder);
+								} else {
+									GameObject myInstance = Instantiate (floorTiles [Random.Range (0, floorTiles.Length)], new Vector3 (x * numCaves + x1, y * numCaves + y1, 0), Quaternion.identity) as GameObject;
+									myInstance.transform.SetParent (boardHolder);
+								}
+							}
+						}
+					}
+
+
+					GameObject instance = Instantiate(toInstantiate, new Vector3(x + (numCaves - 1) * (GRID_WIDTH + 10), y + (numCaves - 1) * GRID_WIDTH, 0f), Quaternion.identity) as GameObject;
+
+	                instance.transform.SetParent(boardHolder);
+	            }
+	        }
+
+			numCaves++;
+		}
     }
 
     public void SetupScene(int level)
