@@ -16,14 +16,13 @@ public class SuperBasicGeneratorScript : MonoBehaviour
     string[] adjectives;
     string[] middles;
     string[] motivations;
-    string[] suddenly;
 
     int rbeg;
     int rtasks;
     int radj;
     int rmotivations;
     int rmiddles;
-    int rsuddenly;
+
 
     string outp;
     string keyTask;
@@ -34,23 +33,18 @@ public class SuperBasicGeneratorScript : MonoBehaviour
         nouns = new string[] { "night", "day", "evening" };
         adjectives = new string[] { "dark", "stormy", "clear", "beautiful", "scary", "pretty", "magical" };
         motivations = new string[] {
-            "John stayed out late and needs to find his house",
-            "John is very bored and wants to go on a journey",
-            "John got a call from Destiny and it told him to go on an adventure",
+            "John is very lost and needs to find his house",
+            "John gets very bored and wants to go on a journey",
+            "John gets a call from Destiny and it told him to go on an adventure",
             "John hears a kitten in need and sets out on an epic quest" };
         beginnings = new string[] {
-            "It was a {0} and {1} night",
-            "It was a {0} day in the woods",
-            "It was a {0} day" };
+            "It is a {0} and {1} night",
+            "It is a {0} day in the woods",
+            "It is a {0} day" };
         middles = new string[] {
-            "John kept walking along the {0} path",
-            "John was feeling very {0}",
-            "John sees a {0} sign and stops to read it" };
-        suddenly = new string[] {
-            "it started raining cats and dogs",
-            "monsters fell from the sky", 
-            "John heard a scream from right behind him", 
-        };
+            "John is walking along the {0} path",
+            "John is feeling very {0}",
+            "John sees a {0} sign and stops to read it" };       
         tasks = new string[] {
             "Kill 5 creatures",
             "Find the key to the next room",
@@ -60,9 +54,8 @@ public class SuperBasicGeneratorScript : MonoBehaviour
 
         rbeg = UnityEngine.Random.Range(0, beginnings.Length);
         rtasks = UnityEngine.Random.Range(0, tasks.Length);
-        rmotivations = UnityEngine.Random.Range(0, tasks.Length);
+        rmotivations = UnityEngine.Random.Range(0, motivations.Length);
         rmiddles = UnityEngine.Random.Range(0, middles.Length);
-        rsuddenly = UnityEngine.Random.Range(0, suddenly.Length);
 
 
         keyTask = tasks[rtasks];
@@ -75,14 +68,14 @@ public class SuperBasicGeneratorScript : MonoBehaviour
             ". " +
             String.Format(middles[rmiddles], reshuffle(adjectives)) +
             ". " +
-            "Suddenly, " +
-            suddenly[rsuddenly] +
-            ". "
+            motivations[rmotivations] +
+            ". " 
+
             ;
 
         Debug.Log(outp);
-        //storyText.text = outp;
-        motivationText.text = outp;
+        if(motivationText != null)
+            motivationText.text = outp;
 
 
 

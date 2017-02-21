@@ -17,7 +17,7 @@ Platform assembly: C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Man
 Loading C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
 Loading C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-- Completed reload, in  0.069 seconds
+- Completed reload, in  0.075 seconds
 Platform assembly: C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\System.dll (this message is harmless)
 OnLevelWasLoaded was found on GameManager
@@ -30,46 +30,30 @@ desktop: 1366x768 40Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.424104 ms
-Kill 5 creatures
+UnloadTime: 1.821080 ms
+Open the magic portal
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-John stayed out late and needs to find his house
+John gets very bored and wants to go on a journey
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-It was a pretty day in the woods. John sees a pretty sign and stops to read it. Suddenly, monsters fell from the sky. 
+It is a dark and scary night. John sees a beautiful sign and stops to read it. John gets very bored and wants to go on a journey. 
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 8.622625 ms
-hehe
+UnloadTime: 9.605827 ms
+Find the key to the next room
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-hehe
+John hears a kitten in need and sets out on an epic quest
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-hehe
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-hehe
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Find a berry and eat it
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-John stayed out late and needs to find his house
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-It was a dark and beautiful night. John was feeling very beautiful. Suddenly, monsters fell from the sky. 
+It is a stormy and dark night. John is walking along the magical path. John hears a kitten in need and sets out on an epic quest. 
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -78,9 +62,160 @@ NullReferenceException: Object reference not set to an instance of an object
  
 (Filename:  Line: -1)
 
+0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 7864.
-Total: 2.825219 ms (FindLiveObjects: 0.534500 ms CreateObjectMapping: 0.111251 ms MarkObjects: 2.155245 ms  DeleteObjects: 0.017241 ms)
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 7895.
+Total: 2.711094 ms (FindLiveObjects: 0.597310 ms CreateObjectMapping: 0.124798 ms MarkObjects: 1.963531 ms  DeleteObjects: 0.017241 ms)
+
+1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+4
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+5
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+8
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+9
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+10
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 6.049056 ms
+
+Unloading 51 unused Assets to reduce memory usage. Loaded Objects now: 267.
+Total: 0.700762 ms (FindLiveObjects: 0.309944 ms CreateObjectMapping: 0.029557 ms MarkObjects: 0.209366 ms  DeleteObjects: 0.150661 ms)
+
+Open the magic portal
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+John is very lost and needs to find his house
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+It is a beautiful day in the woods. John is feeling very pretty. John is very lost and needs to find his house. 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.919982 ms
+Find a berry and eat it
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+John is very lost and needs to find his house
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+It is a beautiful day. John sees a clear sign and stops to read it. John is very lost and needs to find his house. 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at SuperBasicGeneratorScript.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 7853.
+Total: 4.833087 ms (FindLiveObjects: 1.159317 ms CreateObjectMapping: 0.259861 ms MarkObjects: 3.383941 ms  DeleteObjects: 0.029147 ms)
+
+1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+4
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+5
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+8
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+9
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+10
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+11
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 10.139097 ms
+
+Unloading 51 unused Assets to reduce memory usage. Loaded Objects now: 267.
+Total: 0.971707 ms (FindLiveObjects: 0.355512 ms CreateObjectMapping: 0.047210 ms MarkObjects: 0.310355 ms  DeleteObjects: 0.257397 ms)
+
+Find the key to the next room
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+John hears a kitten in need and sets out on an epic quest
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+It is a clear day. John is feeling very dark. John hears a kitten in need and sets out on an epic quest. 
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 3298 -> priority: 1 
+  Thread -> id: 2de0 -> priority: 1 

@@ -9,9 +9,8 @@ public class sceneMan : MonoBehaviour
     //http://blog.teamtreehouse.com/make-loading-screen-unity
 
     private bool loadScene = false;
-
     public int scene;
-    public Text loading;
+   
 
 
 
@@ -26,7 +25,7 @@ public class sceneMan : MonoBehaviour
             // ...set the loadScene boolean to true to prevent loading a new scene more than once...
             loadScene = true;
 
-            loading.text = "Press Space To Continue...";
+           
 
             // ...and start a coroutine that will load the desired scene.
             StartCoroutine(LoadNewScene());

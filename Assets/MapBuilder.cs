@@ -12,6 +12,7 @@ public class MapBuilder : MonoBehaviour
     private List<Vector3> gridPositions = new List<Vector3>();
     public GameObject[] floorTiles;
     public GameObject[] wallTiles;
+    public bool[,] cellMap;
 
     // Use this for initialization
     void Start()
@@ -123,7 +124,7 @@ public class MapBuilder : MonoBehaviour
     void BoardSetup()
     {
         boardHolder = new GameObject("Board").transform;
-        bool[,] cellMap = generateMap();
+        cellMap = generateMap();
         GameObject toInstantiate;
 		int numCaves = 1;
 
@@ -188,5 +189,11 @@ public class MapBuilder : MonoBehaviour
     public void SetupScene(int level)
     {
         BoardSetup();
+        
+    }
+
+    public bool[,] getCellMap()
+    {
+        return cellMap;
     }
 }

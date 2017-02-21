@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Implements control of the player
@@ -8,12 +9,22 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Animator animator;
+    public EnemyController ec;
+    public sceneMan sm;
+    int count = 0;  
+
 	public bool isFlipped = false; 
 
     // Use this forinitialization
     void Start()
     {
         animator = GetComponent<Animator>();
+        GameObject g= GameObject.FindWithTag("enemy");
+        ec = g.GetComponent<EnemyController>();
+
+        g = GameObject.Find("Scene Manager");
+        sm = g.GetComponent<sceneMan>();
+        
     }
 
 
@@ -53,6 +64,13 @@ public class PlayerController : MonoBehaviour
 				isFlipped = false;
 			}
         }
+        
+        if (ec.dead == 5)
+        {
+            SceneManager.LoadScene(sm.scene);
+
+        }
+            count++;
 
 
     }
@@ -65,6 +83,7 @@ public class PlayerController : MonoBehaviour
 
         //Check if the tag of the trigger collided with is Exit.
 		if (other.tag == "Wall") {
+           
 			if (Input.GetKey (KeyCode.UpArrow)) {
 				transform.position += transform.up.normalized * 0 * Time.deltaTime;
 			}

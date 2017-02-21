@@ -11,13 +11,14 @@ public class GameManager : MonoBehaviour {
 	private Text levelText;
 	private GameObject levelImage;
 	private GameObject daveImage;
+    public bool[,] cellM;
 
 
 
-	// Use this for initialization
-	void Awake () {
-		boardScript = GetComponent<MapBuilder> (); 
-		InitGame (); 
+    // Use this for initialization
+    void Awake () {
+		boardScript = GetComponent<MapBuilder> ();
+        InitGame (); 
 		
 	}
 
@@ -26,7 +27,9 @@ public class GameManager : MonoBehaviour {
 		doingSetup = true; 
 
 		boardScript.SetupScene (level);
-	}
+        cellM = boardScript.getCellMap();
+        
+    }
 
 	//Hides black image used between levels
 	void HideLevelImage()
