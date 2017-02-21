@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Completed\Scripts\BoardManager.cs" />
+    <Compile Include="Assets\Completed\Scripts\Camera.cs" />
     <Compile Include="Assets\Completed\Scripts\Enemy.cs" />
     <Compile Include="Assets\Completed\Scripts\GameManager.cs" />
     <Compile Include="Assets\Completed\Scripts\Loader.cs" />
@@ -86,8 +87,11 @@
     <Compile Include="Assets\EnemyController.cs" />
     <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\MapBuilder.cs" />
+    <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\PlayerController.cs" />
+    <Compile Include="Assets\SuperBasicGeneratorScript.cs" />
     <Compile Include="Assets\Wall.cs" />
+    <Compile Include="Assets\sceneMan.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\OFL.txt" />
