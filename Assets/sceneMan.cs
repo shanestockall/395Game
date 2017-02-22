@@ -11,9 +11,6 @@ public class sceneMan : MonoBehaviour
     private bool loadScene = false;
     public int scene;
    
-
-
-
     // Updates once per frame
     void Update()
     {
@@ -40,8 +37,6 @@ public class sceneMan : MonoBehaviour
     IEnumerator LoadNewScene()
     {
         
-        
-
         // Start an asynchronous operation to load the scene that was passed to the LoadNewScene coroutine.
         AsyncOperation async = SceneManager.LoadSceneAsync(scene);
 

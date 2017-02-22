@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Implements control of the player
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-    public Animator animator;
-    public EnemyController ec;
-    public sceneMan sm;
-    int count = 0;  
+    Animator animator;
+    EnemyController ec;
+    sceneMan sm;
+    public Text score;
+    int count = 0;
+    int dead = 0;  
 
-	public bool isFlipped = false; 
+	public bool isFlipped = false;
+    public bool monsters = false;
 
     // Use this forinitialization
     void Start()
@@ -65,47 +69,44 @@ public class PlayerController : MonoBehaviour
 			}
         }
         
-        if (ec.dead == 5)
-        {
-            SceneManager.LoadScene(sm.scene);
-
-        }
-            count++;
+       
+            
 
 
     }
 
     //OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
-       Rigidbody2D rigi = GetComponent<Rigidbody2D>();
-        Vector2 right = transform.right.normalized;
-
-        //Check if the tag of the trigger collided with is Exit.
-		if (other.tag == "Wall") {
-           
-			if (Input.GetKey (KeyCode.UpArrow)) {
-				transform.position += transform.up.normalized * 0 * Time.deltaTime;
-			}
-
-			if (Input.GetKey (KeyCode.DownArrow)) {
+        if (other.gameObject.tag == "enemy")
+        {
+            animator.SetTrigger("playerChop");
+            if (monsters)
+            {
+                dead++;
+                score.text = "Monsters Killed: " + dead;
             
-				transform.position -= transform.up.normalized * 0 * Time.deltaTime;
-			}
+                if (dead == 5)
+                {
+                    SceneManager.LoadScene(sm.scene);
+                }
+            }
 
-			if (Input.GetKey (KeyCode.LeftArrow)) {
+            
+        }
 
-				rigi.velocity -= right * 0 * Time.deltaTime;
-			}
+        if (other.gameObject.tag == "berry")
+        {
+            animator.SetTrigger("playerChop");
+            dead++;
+            score.text = "Berries Collected: " + dead;
 
-			if (Input.GetKey (KeyCode.RightArrow)) {
-				rigi.velocity += right * 0 * Time.deltaTime;
-			}
+            if (dead == 5)
+            {
+                SceneManager.LoadScene(sm.scene);
+            }
 
-		} else {
-			animator.SetTrigger ("playerChop");
-		}
-			
-    }
+        }
+        }
 
 }

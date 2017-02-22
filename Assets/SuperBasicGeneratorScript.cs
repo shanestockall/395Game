@@ -25,6 +25,7 @@ public class SuperBasicGeneratorScript : MonoBehaviour
 
 
     string outp;
+    string middleOutp;
     string keyTask;
     string keyMotivation;
     // Use this for initialization
@@ -44,7 +45,10 @@ public class SuperBasicGeneratorScript : MonoBehaviour
         middles = new string[] {
             "John is walking along the {0} path",
             "John is feeling very {0}",
-            "John sees a {0} sign and stops to read it" };       
+            "John sees a {0} sign and stops to read it",
+            "John meets a {0} man trying to sell him a magic potion, but he keeps walking",
+            "John wants to stop and rest, but knows he must keep moving",
+            "John stops at a {0} bar to rest and then proceeds on his way",};       
         tasks = new string[] {
             "Kill 5 creatures",
             "Find the key to the next room",
@@ -68,14 +72,19 @@ public class SuperBasicGeneratorScript : MonoBehaviour
             ". " +
             String.Format(middles[rmiddles], reshuffle(adjectives)) +
             ". " +
-            motivations[rmotivations] +
+            keyMotivation +
             ". " 
-
+            ;
+        middleOutp = String.Format(middles[rmiddles], reshuffle(adjectives)) +
+            ". "
             ;
 
-        Debug.Log(outp);
-        if(motivationText != null)
+
+        if (motivationText != null)
             motivationText.text = outp;
+
+        if (storyText != null)
+            storyText.text = middleOutp;
 
 
 

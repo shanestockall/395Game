@@ -25,12 +25,9 @@ public class EnemyController : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-
-		
-        
 		transform.position = FindFreeLocation();
 		timer = 30;
-		dead = 0;
+		
 	}
 
 
@@ -61,19 +58,13 @@ public class EnemyController : MonoBehaviour {
 		//Check if the tag of the trigger collided with is Exit.
 		if (other.gameObject.tag == "Player")
 		{
-            Debug.Log("collision");
+            
 			transform.position = FindFreeLocation();
-			if (count > 4)
-			{
-				GetComponent<Renderer>().enabled = false;
-				dead++;
-				score.text = "Monsters Killed: " + dead ;
-			}
-			else
-			{
-				Debug.Log(count);
-				count++;
-			}
+			
+			GetComponent<Renderer>().enabled = false;
+				
+			
+
 
 
 		}
