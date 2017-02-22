@@ -37,18 +37,23 @@ public class SuperBasicGeneratorScript : MonoBehaviour
             "John is very lost and needs to find his house",
             "John gets very bored and wants to go on a journey",
             "John gets a call from Destiny and it told him to go on an adventure",
-            "John hears a kitten in need and sets out on an epic quest" };
+            "John hears a kitten in need and sets out on an epic quest", 
+		    "John lives in his mother's basement. Amid an existential crisis, he sets out to find the meaning of life!"};
         beginnings = new string[] {
             "It is a {0} and {1} night",
             "It is a {0} day in the woods",
             "It is a {0} day" };
-        middles = new string[] {
-            "John is walking along the {0} path",
-            "John is feeling very {0}",
-            "John sees a {0} sign and stops to read it",
-            "John meets a {0} man trying to sell him a magic potion, but he keeps walking",
-            "John wants to stop and rest, but knows he must keep moving",
-            "John stops at a {0} bar to rest and then proceeds on his way",};       
+		middles = new string[] {
+			"John is walking along the {0} path",
+			"John is feeling very {0}",
+			"John sees a {0} sign and stops to read it",
+			"John meets a {0} man trying to sell him a magic potion, but he keeps walking",
+			"John wants to stop and rest, but knows he must keep moving",
+			"John stops at a {0} bar to rest and then proceeds on his way",
+			"John is frightened by a {0} creature hiding in the bushes. He runs away!",
+			"John hears a sound in the distance. He walks the other way.", 
+			"John sees a truly amazing sight in the distance. He continues on, reinspired."
+		};
         tasks = new string[] {
             "Kill 5 creatures",
             "Find the key to the next room",

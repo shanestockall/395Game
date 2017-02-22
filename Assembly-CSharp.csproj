@@ -62,6 +62,8 @@
      <Compile Include="Assets\PlayerController.cs" />
      <Compile Include="Assets\SuperBasicGeneratorScript.cs" />
      <Compile Include="Assets\Wall.cs" />
+     <Compile Include="Assets\berryManager.cs" />
+     <Compile Include="Assets\keyManager.cs" />
      <Compile Include="Assets\sceneMan.cs" />
      <None Include="Assets\Fonts\OFL.txt" />
  <Reference Include="UnityEngine.Analytics">
