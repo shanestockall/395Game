@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
 	private GameObject levelImage;
 	private GameObject daveImage;
     public bool[,] cellM;
+	public int exitVal; 
 
 
 
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour {
 
 		boardScript.SetupScene (level);
         cellM = boardScript.getCellMap();
+		exitVal = boardScript.GetExitVal (); 
+
         
     }
 
@@ -39,6 +42,10 @@ public class GameManager : MonoBehaviour {
 
 		//Set doingSetup to false allowing player to move again.
 		doingSetup = false;
+	}
+
+	int GetExitVal() {
+		return exitVal; 
 	}
 
 

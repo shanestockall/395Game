@@ -14,6 +14,8 @@ public class MapBuilder : MonoBehaviour
     public GameObject[] wallTiles;
     public bool[,] cellMap;
 	public GameObject[] exitTiles;
+	public GameObject[] exitWalls; 
+	public int exitVal;
 
     // Use this for initialization
     void Start()
@@ -128,7 +130,7 @@ public class MapBuilder : MonoBehaviour
 		bool[,] cellMap = generateMap();
 		GameObject toInstantiate;
 
-		var exitVal = Random.Range (1, GRID_HEIGHT);
+		exitVal = (int)Random.Range (1, GRID_HEIGHT);
 
 
 		for (int x = -1; x < GRID_WIDTH + 1; x++)
@@ -161,10 +163,10 @@ public class MapBuilder : MonoBehaviour
 		}
 			
 
-		GameObject barrier = Instantiate(wallTiles [Random.Range (0, wallTiles.Length)], new Vector3(GRID_WIDTH, exitVal, 0f), Quaternion.identity) as GameObject;
+		GameObject barrier = Instantiate(exitWalls [0], new Vector3(GRID_WIDTH, exitVal, 0f), Quaternion.identity) as GameObject;
 		barrier.transform.SetParent(boardHolder);
 
-		GameObject barrier1 = Instantiate(wallTiles [Random.Range (0, wallTiles.Length)], new Vector3(GRID_WIDTH, exitVal-1, 0f), Quaternion.identity) as GameObject;
+		GameObject barrier1 = Instantiate(exitWalls [0], new Vector3(GRID_WIDTH, exitVal-1, 0f), Quaternion.identity) as GameObject;
 		barrier1.transform.SetParent(boardHolder);
 
 
@@ -181,4 +183,8 @@ public class MapBuilder : MonoBehaviour
     {
         return cellMap;
     }
+
+	public int GetExitVal(){
+		return exitVal;
+	}
 }

@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
 	public bool isFlipped = false;
     public bool monsters = false;
 
+	public GameManager gm; 
+
+
     // Use this forinitialization
     void Start()
     {
@@ -28,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
         g = GameObject.Find("Scene Manager");
         sm = g.GetComponent<sceneMan>();
+		gm = GetComponent<GameManager> (); 
+
         
     }
 
@@ -74,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
 
     }
+		
 
     //OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
     private void OnCollisionEnter2D(Collision2D other)
@@ -81,19 +87,21 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "enemy")
         {
             animator.SetTrigger("playerChop");
-            if (monsters)
-            {
-                dead++;
-                score.text = "Monsters Killed: " + dead;
+            //if (monsters)
+            //{
+            dead++;
+            score.text = "Monsters Killed: " + dead;
             
-                if (dead == 5)
-                {
-                    SceneManager.LoadScene(sm.scene);
-                }
+            if (dead == 5)
+            {
+				foreach (var go in GameObject.FindGameObjectsWithTag("exitwall")) {
+					go.SetActive (false);
+				}
             }
+        }
 
             
-        }
+        
 
         if (other.gameObject.tag == "berry")
         {
@@ -103,10 +111,35 @@ public class PlayerController : MonoBehaviour
 
             if (dead == 5)
             {
-                SceneManager.LoadScene(sm.scene);
+				foreach (var go in GameObject.FindGameObjectsWithTag("exitwall")) {
+					go.SetActive (false);
+				}
             }
 
         }
-        }
+
+		if (other.gameObject.tag == "key")
+		{
+			animator.SetTrigger("playerChop");
+			dead++;
+			score.text = "Keys Collected: " + dead;
+
+			if (dead == 1)
+			{
+				foreach (var go in GameObject.FindGameObjectsWithTag("exitwall")) {
+					go.SetActive (false);
+				}
+			}
+
+		}
+
+		if (other.gameObject.tag == "exit") {
+			SceneManager.LoadScene (sm.scene);
+			var wallList = GameObject.FindGameObjectsWithTag ("exitwall"); 
+			foreach (var go in wallList) {
+				go.SetActive (true); 
+			}
+		}
+    }
 
 }
