@@ -14,7 +14,10 @@ public class PlayerController : MonoBehaviour
     sceneMan sm;
     public Text score;
     int count = 0;
-    int dead = 0;  
+    int dead = 0;
+    int berries = 0;
+    int keys = 0;
+    int speed; 
 
 	public bool isFlipped = false;
     public bool monsters = false;
@@ -31,7 +34,9 @@ public class PlayerController : MonoBehaviour
 
         g = GameObject.Find("Scene Manager");
         sm = g.GetComponent<sceneMan>();
-		gm = GetComponent<GameManager> (); 
+		gm = GetComponent<GameManager> ();
+
+        speed = 5;
 
         
     }
@@ -42,23 +47,39 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     internal void FixedUpdate()
     {
-    
+       
+        if (Input.GetKeyDown(KeyCode.M)){
+            if (speed < 10)
+            {
 
-		if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+                speed *= 2;
+                Debug.Log(speed);
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.M))
+        {
+            if (speed > 5)
+            {
+                speed /= 2;
+                Debug.Log(speed);
+            }
+        }
+
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {   
-            transform.position += transform.up.normalized * 5 * Time.deltaTime;
+            transform.position += transform.up.normalized * speed * Time.deltaTime;
         }
 
 		if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
 
-            transform.position -= transform.up.normalized * 5 * Time.deltaTime;
+            transform.position -= transform.up.normalized * speed * Time.deltaTime;
         }
 
 		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
 
-            transform.position -= transform.right.normalized * -5 * Time.deltaTime;
+            transform.position -= transform.right.normalized * -speed * Time.deltaTime;
 			if (!isFlipped) {
 				transform.localRotation = Quaternion.Euler (0f, 180f, 0f);
 				isFlipped = true;
@@ -67,30 +88,28 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
-            transform.position += transform.right.normalized * 5 * Time.deltaTime;
+            transform.position += transform.right.normalized * speed * Time.deltaTime;
 			if (isFlipped) {
 				transform.localRotation = Quaternion.Euler (0f, 0f, 0f);
 				isFlipped = false;
 			}
         }
-        
-       
-            
-
-
     }
 		
 
     //OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.tag == "enemy")
         {
-            animator.SetTrigger("playerChop");
-            //if (monsters)
-            //{
-            dead++;
-            score.text = "Monsters Killed: " + dead;
+            if (other.gameObject.GetComponent<EnemyController>().ded == true)
+            {
+                animator.SetTrigger("playerChop");
+                other.gameObject.SetActive(false);
+                dead++;
+                score.text = "Monsters Killed: " + dead;
+            }
+            
             
             if (dead == 5)
             {
@@ -105,26 +124,32 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "berry")
         {
-            animator.SetTrigger("playerChop");
-            dead++;
-            score.text = "Berries Collected: " + dead;
 
-            if (dead == 5)
+            if (other.gameObject.GetComponent<berryManager>().collected == true)
+            {
+                animator.SetTrigger("playerChop");
+                other.gameObject.SetActive(false);
+                berries++;
+                score.text = "Berries Collected: " + berries;
+            }
+           
+
+            if (berries == 5)
             {
 				foreach (var go in GameObject.FindGameObjectsWithTag("exitwall")) {
 					go.SetActive (false);
 				}
             }
-
+            
         }
 
 		if (other.gameObject.tag == "key")
 		{
 			animator.SetTrigger("playerChop");
-			dead++;
-			score.text = "Keys Collected: " + dead;
+			keys++;
+			score.text = "Keys Collected: " + keys;
 
-			if (dead == 1)
+			if (keys == 1)
 			{
 				foreach (var go in GameObject.FindGameObjectsWithTag("exitwall")) {
 					go.SetActive (false);

@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour {
     public int count;
 	public int timer;
 	public int dead;
+    public bool ded;
 	public Text score;
     public GameObject playerObject;
     public Rigidbody2D rigi;
@@ -58,20 +59,29 @@ public class EnemyController : MonoBehaviour {
 		//Check if the tag of the trigger collided with is Exit.
 		if (other.gameObject.tag == "Player")
 		{
+            if (Input.GetKey(KeyCode.Z)){
+                ded = true;
+            }
             
-			transform.position = FindFreeLocation();
-			
-			GetComponent<Renderer>().enabled = false;
-				
-			
+			//transform.position = FindFreeLocation();
 
-
+            //gameObject.SetActive(false);
 
 		}
 
 	}
+    void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (Input.GetKey(KeyCode.Z))
+            {
+                ded = true;
+            }
+        }
+    }
 
-	public Vector2 FindFreeLocation()
+    public Vector2 FindFreeLocation()
 	{
         // Fill this in with something real.
         //return new Vector2(0, 6);
