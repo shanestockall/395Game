@@ -18,8 +18,8 @@ public class keyManager : MonoBehaviour {
 		//Check if the tag of the trigger collided with is Exit.
 		if (other.gameObject.tag == "Player")
 		{
-			GetComponent<Renderer>().enabled = false;
-		}
+            gameObject.SetActive(false);
+        }
 
 	}
 

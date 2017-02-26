@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class berryManager : MonoBehaviour {
-
+    public bool collected; 
 	// Use this for initialization
 	void Start () {
         transform.position = FindFreeLocation();
+        collected = false;
     }
 	
 
@@ -15,12 +16,22 @@ public class berryManager : MonoBehaviour {
     //OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
     private void OnCollisionEnter2D(Collision2D other)
     {
-        //Check if the tag of the trigger collided with is Exit.
-        if (other.gameObject.tag == "Player")
+        if (Input.GetKey(KeyCode.X))
         {
-            GetComponent<Renderer>().enabled = false;
+            collected = true;
         }
 
+    }
+
+    void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (Input.GetKey(KeyCode.X))
+            {
+                collected = true;
+            }
+        }
     }
 
     public Vector2 FindFreeLocation()

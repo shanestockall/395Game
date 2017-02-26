@@ -1,0 +1,127 @@
+Initialize engine version: 5.5.1f1 (88d00a7498cd)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4000 (ID=0x166)
+    Vendor:   Intel
+    VRAM:     880 MB
+    Driver:   9.17.10.2932
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+- Completed reload, in  0.064 seconds
+Platform assembly: C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\karina\Documents\EECS 395\395Game\TotalGame_Data\Managed\System.dll (this message is harmless)
+OnLevelWasLoaded was found on GameManager
+This message has been deprecated and will be removed in a later version of Unity.
+Add a delegate to SceneManager.sceneLoaded instead to get notifications after scene loading has completed
+ 
+(Filename:  Line: 382)
+
+desktop: 1366x768 40Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 2.567000 ms
+Open the magic portal
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+John hears a kitten in need and sets out on an epic quest
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 14.710271 ms
+Open the magic portal
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+John is very lost and needs to find his house
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 3805.
+Total: 2.044404 ms (FindLiveObjects: 0.333755 ms CreateObjectMapping: 0.092367 ms MarkObjects: 1.591597 ms  DeleteObjects: 0.016420 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.866339 ms
+
+Unloading 66 unused Assets to reduce memory usage. Loaded Objects now: 273.
+Total: 0.937634 ms (FindLiveObjects: 0.247545 ms CreateObjectMapping: 0.212650 ms MarkObjects: 0.320207 ms  DeleteObjects: 0.156409 ms)
+
+Open the magic portal
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+John gets very bored and wants to go on a journey
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.727036 ms
+Find the key to the next room
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+John gets a call from Destiny and it told him to go on an adventure
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 3746.
+Total: 2.587937 ms (FindLiveObjects: 0.336218 ms CreateObjectMapping: 0.092367 ms MarkObjects: 2.060415 ms  DeleteObjects: 0.097704 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.159419 ms
+
+Unloading 67 unused Assets to reduce memory usage. Loaded Objects now: 273.
+Total: 0.926550 ms (FindLiveObjects: 0.175293 ms CreateObjectMapping: 0.047620 ms MarkObjects: 0.481132 ms  DeleteObjects: 0.220861 ms)
+
+Find the key to the next room
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+John is very lost and needs to find his house
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.639184 ms
+Open the magic portal
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+John hears a kitten in need and sets out on an epic quest
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 3763.
+Total: 1.603092 ms (FindLiveObjects: 0.334576 ms CreateObjectMapping: 0.103451 ms MarkObjects: 1.149464 ms  DeleteObjects: 0.014368 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.296910 ms
+Find the key to the next room
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+John lives in his mother's basement. Amid an existential crisis, he sets out to find the meaning of life!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+
+Unloading 68 unused Assets to reduce memory usage. Loaded Objects now: 266.
+Total: 0.589511 ms (FindLiveObjects: 0.045978 ms CreateObjectMapping: 0.039410 ms MarkObjects: 0.300502 ms  DeleteObjects: 0.202387 ms)
+
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 31c8 -> priority: 1 
