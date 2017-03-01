@@ -27,7 +27,7 @@ public class berryManager : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            if (Input.GetKey(KeyCode.X))
+            if (Input.GetKey(KeyCode.K))
             {
                 collected = true;
             }

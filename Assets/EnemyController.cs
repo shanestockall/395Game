@@ -12,12 +12,17 @@ public class EnemyController : MonoBehaviour {
 	public Text score;
     public GameObject playerObject;
     public Rigidbody2D rigi;
+	public float health; 
+	int attackTimer;
+	private Animator animator; 
+	private SpriteRenderer renderer;
+
 
 
     void Awake()
     {
         
-        
+		health = 30f; 
         GameObject g = GameObject.Find("GameManager");
         boardScript = g.GetComponent<GameManager>();
         rigi = GetComponent<Rigidbody2D>();
@@ -26,8 +31,12 @@ public class EnemyController : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
+		animator = GetComponent<Animator>();
 		transform.position = FindFreeLocation();
 		timer = 30;
+
+		attackTimer = 0; 
+		renderer = transform.gameObject.GetComponent<SpriteRenderer> ();
 		
 	}
 
@@ -36,6 +45,20 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
         Vector2[] directions = { transform.right.normalized, transform.up.normalized, -1 * transform.right.normalized, -1 * transform.up.normalized };
         int rand;
+
+		if (Mathf.Abs(Vector3.Distance(transform.position, GameObject.Find("Player").transform.position)) < 1){
+
+			attackTimer += 1; 
+
+
+			if (attackTimer >= 100) {
+				GameObject.Find ("Player").GetComponent<PlayerController> ().health.value -= 10; 
+				animator.SetTrigger ("enemyAttack");
+				StartCoroutine (FlashCharacterSprites (GameObject.Find ("Player").GetComponent<SpriteRenderer> (), 3));
+
+				attackTimer = 0; 
+			}
+			}
 
         if (timer != 0)
 			timer--;
@@ -59,8 +82,16 @@ public class EnemyController : MonoBehaviour {
 		//Check if the tag of the trigger collided with is Exit.
 		if (other.gameObject.tag == "Player")
 		{
-            if (Input.GetKey(KeyCode.Z)){
-                ded = true;
+			if (Input.GetKey(KeyCode.J) && Time.time >= other.gameObject.GetComponent<PlayerController>().nextAttack && other.gameObject.GetComponent<PlayerController>().energy.value >= 20){
+				StartCoroutine(FlashEnemySprites(transform.gameObject.GetComponent<SpriteRenderer>(), 3));
+
+				transform.gameObject.GetComponent<EnemyController>().health -= 10f + other.gameObject.GetComponent<PlayerController>().strength.value;
+
+				Debug.Log (health);
+				if (health <= 0f) {
+					ded = true;
+				}
+
             }
             
 			//transform.position = FindFreeLocation();
@@ -70,16 +101,20 @@ public class EnemyController : MonoBehaviour {
 		}
 
 	}
+
     void OnCollisionStay2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            if (Input.GetKey(KeyCode.Z))
-            {
-                ded = true;
-            }
-        }
-    }
+	{
+		if (other.gameObject.tag == "Player") {
+			if (Input.GetKey(KeyCode.J) && Time.time >= other.gameObject.GetComponent<PlayerController>().nextAttack && other.gameObject.GetComponent<PlayerController>().energy.value >= 20) {
+				StartCoroutine(FlashEnemySprites(transform.gameObject.GetComponent<SpriteRenderer>(), 3));
+				transform.gameObject.GetComponent<EnemyController>().health -= 10f + other.gameObject.GetComponent<PlayerController>().strength.value;
+				Debug.Log (health);
+				if (health <= 0f) {
+					ded = true;
+				}
+			}
+		}
+	}
 
     public Vector2 FindFreeLocation()
 	{
@@ -111,5 +146,31 @@ public class EnemyController : MonoBehaviour {
                 FindFreeLocation();
             }  */
 		}
+	}
+
+	IEnumerator FlashEnemySprites(SpriteRenderer sprite, int numTimes){ 
+		Color32 myColor = new Color32(255, 0, 0, 255);
+		for(var n = 0; n < numTimes; n++)
+		{
+			sprite.color = Color.white;
+			yield return new WaitForSeconds(0.05f);
+			sprite.color = myColor;
+			yield return new WaitForSeconds(0.05f);
+		}
+
+		sprite.color = Color.white;
+	}
+
+	IEnumerator FlashCharacterSprites(SpriteRenderer sprite, int numTimes){ 
+		Color32 myColor = new Color32(255, 0, 0, 255);
+		for(var n = 0; n < numTimes; n++)
+		{
+			sprite.color = Color.white;
+			yield return new WaitForSeconds(0.05f);
+			sprite.color = myColor;
+			yield return new WaitForSeconds(0.05f);
+		}
+
+		sprite.color = Color.white;
 	}
 }
