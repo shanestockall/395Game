@@ -85,10 +85,16 @@
     <Compile Include="Assets\Completed\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Completed\Scripts\Wall.cs" />
     <Compile Include="Assets\EnemyController.cs" />
+    <Compile Include="Assets\EnergyBarController.cs" />
     <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\HealthBarController.cs" />
+    <Compile Include="Assets\Inventory.cs" />
+    <Compile Include="Assets\Item.cs" />
     <Compile Include="Assets\MapBuilder.cs" />
     <Compile Include="Assets\NewBehaviourScript.cs" />
     <Compile Include="Assets\PlayerController.cs" />
+    <Compile Include="Assets\Stat.cs" />
+    <Compile Include="Assets\StatsManager.cs" />
     <Compile Include="Assets\SuperBasicGeneratorScript.cs" />
     <Compile Include="Assets\Wall.cs" />
     <Compile Include="Assets\berryManager.cs" />
