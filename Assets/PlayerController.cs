@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
 	private float attackCooldown; 
 	private bool playerDead; 
 
+	Item[] inventory; 
+
 
 
 	public bool pause = false; 
@@ -125,6 +127,8 @@ public class PlayerController : MonoBehaviour
 		foreach (GameObject go in gameOverObjects) { 
 			go.SetActive (false); 
 		} 
+
+		inventory = null; 
     }
 
 
@@ -334,9 +338,9 @@ public class PlayerController : MonoBehaviour
 		for(var n = 0; n < numTimes; n++)
 		{
 			sprite.color = Color.white;
-			yield return new WaitForSeconds(0.1f);
+			yield return new WaitForSeconds(0.05f);
 			sprite.color = myColor;
-			yield return new WaitForSeconds(0.1f);
+			yield return new WaitForSeconds(0.05f);
 		}
 		sprite.color = Color.white;
 	}

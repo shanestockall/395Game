@@ -30,7 +30,7 @@ public class Inventory : MonoBehaviour {
 				items [i] = null; 
 				itemImages[i].sprite = null; 
 				itemImages [i].enabled = false; 
-				return; 
+				return;
 			}
 		}
 	}
