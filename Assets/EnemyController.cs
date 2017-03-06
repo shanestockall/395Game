@@ -84,7 +84,10 @@ public class EnemyController : MonoBehaviour {
 		//Check if the tag of the trigger collided with is Exit.
 		if (other.gameObject.tag == "Player")
 		{
-			if (Input.GetKey(KeyCode.J) && Time.time >= other.gameObject.GetComponent<PlayerController>().nextAttack && other.gameObject.GetComponent<PlayerController>().energy.value >= 20){
+			PlayerController pc = other.gameObject.GetComponent<PlayerController> (); 
+			float nextAttack = pc.nextAttack; 
+			float energyVal = pc.energy.value; 
+			if (Input.GetKey(KeyCode.Z) && Time.time >= nextAttack && energyVal >= 20){
 				StopCoroutine (FlashCharacterSprites (GameObject.Find ("Player").GetComponent<SpriteRenderer> (), 3));
 				StopCoroutine (FlashEnemySprites (transform.gameObject.GetComponent<SpriteRenderer> (), 3));
 				StartCoroutine(FlashEnemySprites(transform.gameObject.GetComponent<SpriteRenderer>(), 3));
@@ -108,8 +111,11 @@ public class EnemyController : MonoBehaviour {
 
     void OnCollisionStay2D(Collision2D other)
 	{
+		PlayerController pc = other.gameObject.GetComponent<PlayerController> (); 
+		float nextAttack = pc.nextAttack; 
+		float energyVal = pc.energy.value; 
 		if (other.gameObject.tag == "Player") {
-			if (Input.GetKey(KeyCode.J) && Time.time >= other.gameObject.GetComponent<PlayerController>().nextAttack && other.gameObject.GetComponent<PlayerController>().energy.value >= 20) {
+			if (Input.GetKey(KeyCode.Z) && Time.time >= nextAttack && energyVal >= 20) {
 				StopCoroutine (FlashCharacterSprites (GameObject.Find ("Player").GetComponent<SpriteRenderer> (), 3));
 				StopCoroutine (FlashEnemySprites (transform.gameObject.GetComponent<SpriteRenderer> (), 3)); 
 				StartCoroutine(FlashEnemySprites(transform.gameObject.GetComponent<SpriteRenderer>(), 3));
