@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyController : MonoBehaviour {
+public class BossController : MonoBehaviour {
     public GameManager boardScript;
     public int count;
 	public int timer;
@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour {
     void Awake()
     {
         
-		health = 30f; 
+		health = 300f; 
         GameObject g = GameObject.Find("GameManager");
         boardScript = g.GetComponent<GameManager>();
         rigi = GetComponent<Rigidbody2D>();
@@ -52,7 +52,7 @@ public class EnemyController : MonoBehaviour {
 
 
 			if (attackTimer >= 100) {
-				GameObject.Find ("Player").GetComponent<PlayerController> ().health.value -= 10; 
+				GameObject.Find ("Player").GetComponent<PlayerController> ().health.value -= 40; 
 				animator.SetTrigger ("enemyAttack");
 				StopCoroutine (FlashEnemySprites (transform.gameObject.GetComponent<SpriteRenderer> (), 3)); 
 				StopCoroutine (FlashCharacterSprites (GameObject.Find ("Player").GetComponent<SpriteRenderer> (), 3));
@@ -96,7 +96,7 @@ public class EnemyController : MonoBehaviour {
 				StopCoroutine (FlashEnemySprites (transform.gameObject.GetComponent<SpriteRenderer> (), 3));
 				StartCoroutine(FlashEnemySprites(transform.gameObject.GetComponent<SpriteRenderer>(), 3));
 
-				transform.gameObject.GetComponent<EnemyController>().health -= 10f + other.gameObject.GetComponent<PlayerController>().strength.value;
+				transform.gameObject.GetComponent<BossController>().health -= 10f + other.gameObject.GetComponent<PlayerController>().strength.value;
 
 				Debug.Log (health);
 				if (health <= 0f) {
@@ -124,7 +124,7 @@ public class EnemyController : MonoBehaviour {
 				StopCoroutine (FlashCharacterSprites (GameObject.Find ("Player").GetComponent<SpriteRenderer> (), 3));
 				StopCoroutine (FlashEnemySprites (transform.gameObject.GetComponent<SpriteRenderer> (), 3)); 
 				StartCoroutine(FlashEnemySprites(transform.gameObject.GetComponent<SpriteRenderer>(), 3));
-				transform.gameObject.GetComponent<EnemyController>().health -= 10f + other.gameObject.GetComponent<PlayerController>().strength.value;
+				transform.gameObject.GetComponent<BossController>().health -= 10f + other.gameObject.GetComponent<PlayerController>().strength.value;
 				Debug.Log (health);
 				if (health <= 0f) {
 					ded = true;

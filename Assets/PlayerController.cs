@@ -320,6 +320,17 @@ public class PlayerController : MonoBehaviour
     //OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
     private void OnCollisionStay2D(Collision2D other)
 	{
+		if (other.gameObject.tag == "boss") {
+			if (other.gameObject.GetComponent<BossController> ().ded == true && Time.time >= nextAttack) {
+				animator.SetTrigger ("playerChop");
+				other.gameObject.SetActive (false);
+				dead++;
+				score.text = "Kill the boss!";
+				energy.value -= 10; 
+				nextAttack = Time.time + attackCooldown; 
+			}
+		}
+
 		if (other.gameObject.tag == "enemy") {
 			if (other.gameObject.GetComponent<EnemyController> ().ded == true && Time.time >= nextAttack) {
 				animator.SetTrigger ("playerChop");
