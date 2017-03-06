@@ -314,13 +314,6 @@ public class PlayerController : MonoBehaviour
 				g.SetActive (true); 
 			}
 		}
-
-		if (broadSwordList.Count > 0) {
-			strength.value += 10 * broadSwordList.Count; 
-		}
-		if (woodSwordList.Count > 0) { 
-			strength.value += 10 * woodSwordList.Count; 
-		}
 	}
 		
 
@@ -401,10 +394,12 @@ public class PlayerController : MonoBehaviour
 		*/
 			if (other.gameObject.tag == "broadsword") {
 				broadSwordList.Add (1);
+				strength.value += 10 * broadSwordList.Count; 
 				Destroy (other.gameObject);
 			}
 			if (other.gameObject.tag == "woodsword") {
 				woodSwordList.Add (1);
+				strength.value += 5 * woodSwordList.Count;
 				Destroy (other.gameObject);
 			}
 			if (other.gameObject.tag == "healthpotion") {

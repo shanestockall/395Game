@@ -80,7 +80,6 @@
 -define:UNITY_EDITOR_64
 -define:UNITY_EDITOR_OSX
 -define:UNITY_TEAM_LICENSE
-'Assets/ArrowController.cs'
 'Assets/Completed/Scripts/BoardManager.cs'
 'Assets/Completed/Scripts/Camera.cs'
 'Assets/Completed/Scripts/Enemy.cs'
