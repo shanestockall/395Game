@@ -19,6 +19,7 @@ public class SuperBasicGeneratorScript : MonoBehaviour
     public static string gendered_royalty;
     public static bool firstFlag = true;
     public static int scene = 0;
+	public GameObject player; 
 
     // Initialize Vocabulary
     string[] adjectives = new string[] { "dark", "stormy", "clear", "beautiful", "scary", "pretty", "magical" };
@@ -67,6 +68,7 @@ public class SuperBasicGeneratorScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		player = GameObject.Find ("Player");
 
         if (firstFlag == true)
         {
@@ -166,6 +168,7 @@ public class SuperBasicGeneratorScript : MonoBehaviour
     {
         if (keyTask == "Kill 5 monsters.")
         {
+			player.GetComponent<PlayerController> ().gameType = 1; 
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 SceneManager.LoadScene(1);
@@ -173,6 +176,7 @@ public class SuperBasicGeneratorScript : MonoBehaviour
         }
         if (keyTask == "Find 5 berries.")
         {
+			player.GetComponent<PlayerController> ().gameType = 2; 
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 SceneManager.LoadScene(2);
@@ -180,6 +184,7 @@ public class SuperBasicGeneratorScript : MonoBehaviour
         }
         if (keyTask == "Find the key to the next room")
         {
+			player.GetComponent<PlayerController> ().gameType = 3; 
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 SceneManager.LoadScene(3);
