@@ -54,6 +54,8 @@ public class EnemyController : MonoBehaviour {
 			if (attackTimer >= 100) {
 				GameObject.Find ("Player").GetComponent<PlayerController> ().health.value -= 10; 
 				animator.SetTrigger ("enemyAttack");
+				StopCoroutine (FlashEnemySprites (transform.gameObject.GetComponent<SpriteRenderer> (), 3)); 
+				StopCoroutine (FlashCharacterSprites (GameObject.Find ("Player").GetComponent<SpriteRenderer> (), 3));
 				StartCoroutine (FlashCharacterSprites (GameObject.Find ("Player").GetComponent<SpriteRenderer> (), 3));
 
 				attackTimer = 0; 
@@ -83,6 +85,8 @@ public class EnemyController : MonoBehaviour {
 		if (other.gameObject.tag == "Player")
 		{
 			if (Input.GetKey(KeyCode.J) && Time.time >= other.gameObject.GetComponent<PlayerController>().nextAttack && other.gameObject.GetComponent<PlayerController>().energy.value >= 20){
+				StopCoroutine (FlashCharacterSprites (GameObject.Find ("Player").GetComponent<SpriteRenderer> (), 3));
+				StopCoroutine (FlashEnemySprites (transform.gameObject.GetComponent<SpriteRenderer> (), 3));
 				StartCoroutine(FlashEnemySprites(transform.gameObject.GetComponent<SpriteRenderer>(), 3));
 
 				transform.gameObject.GetComponent<EnemyController>().health -= 10f + other.gameObject.GetComponent<PlayerController>().strength.value;
@@ -106,6 +110,8 @@ public class EnemyController : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "Player") {
 			if (Input.GetKey(KeyCode.J) && Time.time >= other.gameObject.GetComponent<PlayerController>().nextAttack && other.gameObject.GetComponent<PlayerController>().energy.value >= 20) {
+				StopCoroutine (FlashCharacterSprites (GameObject.Find ("Player").GetComponent<SpriteRenderer> (), 3));
+				StopCoroutine (FlashEnemySprites (transform.gameObject.GetComponent<SpriteRenderer> (), 3)); 
 				StartCoroutine(FlashEnemySprites(transform.gameObject.GetComponent<SpriteRenderer>(), 3));
 				transform.gameObject.GetComponent<EnemyController>().health -= 10f + other.gameObject.GetComponent<PlayerController>().strength.value;
 				Debug.Log (health);

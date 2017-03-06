@@ -16,6 +16,9 @@ public class MapBuilder : MonoBehaviour
 	public GameObject[] exitTiles;
 	public GameObject[] exitWalls; 
 	public int exitVal;
+	public GameObject[] items;
+	public GameObject[] weapons; 
+	public GameObject[] arrows; 
 
     // Use this for initialization
     void Start()
@@ -129,6 +132,9 @@ public class MapBuilder : MonoBehaviour
 		boardHolder = new GameObject("Board").transform;
 		bool[,] cellMap = generateMap();
 		GameObject toInstantiate;
+		bool potion = false; 
+		bool weapon = false; 
+		bool arrow = false; 
 
 		exitVal = (int)Random.Range (1, GRID_HEIGHT);
 
@@ -137,27 +143,48 @@ public class MapBuilder : MonoBehaviour
 		{
 			for (int y = -1; y < GRID_HEIGHT + 1; y++)
 			{
-				if (x == -1 || x == GRID_WIDTH || y == -1 || y == GRID_HEIGHT)
-				{
+				if (x == -1 || x == GRID_WIDTH || y == -1 || y == GRID_HEIGHT) {
 					if (x == GRID_WIDTH && y == exitVal) {
 						toInstantiate = exitTiles [0];
-					} else if (x == GRID_WIDTH && y == (exitVal-1)) {
+					} else if (x == GRID_WIDTH && y == (exitVal - 1)) {
 						toInstantiate = floorTiles [Random.Range (0, floorTiles.Length)];
 					} else {
 						toInstantiate = wallTiles [Random.Range (0, wallTiles.Length)];
 					}
+				} else if (cellMap [x, y]) {
+					toInstantiate = floorTiles [Random.Range (0, floorTiles.Length)];
+					if (Random.Range (0, 500) <= 1) { 
+						potion = true; 
+
+					}
+					if (Random.Range (0, 2500) <= 1) { 
+						weapon = true; 
+					}
+					if (Random.Range (0, 700) <= 1) { 
+						arrow = true; 
+					} 
 				}
-
-				else if (cellMap[x, y])
-					toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
-
 				else
 					toInstantiate = wallTiles[Random.Range(0, wallTiles.Length)];
 
-
-				GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
-
+				GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;				
 				instance.transform.SetParent(boardHolder);
+
+				if (potion) {
+					GameObject potionGO = Instantiate (items [Random.Range (0, items.Length)], new Vector3 (x, y, 0f), Quaternion.identity) as GameObject; 
+					potionGO.transform.SetParent (boardHolder);
+					potion = false;
+				}
+				if (weapon) {
+					GameObject weaponGO = Instantiate (weapons [Random.Range (0, weapons.Length)], new Vector3 (x, y, 0f), Quaternion.identity) as GameObject; 
+					weaponGO.transform.SetParent (boardHolder);
+					weapon = false;
+				}
+				if (arrow) { 
+					GameObject arrowGO = Instantiate (arrows [0], new Vector3 (x, y, 0f), Quaternion.identity) as GameObject; 
+					arrowGO.transform.SetParent (boardHolder); 
+					arrow = false; 
+				} 
 
 			}
 		}
@@ -168,6 +195,8 @@ public class MapBuilder : MonoBehaviour
 
 		GameObject barrier1 = Instantiate(exitWalls [0], new Vector3(GRID_WIDTH, exitVal-1, 0f), Quaternion.identity) as GameObject;
 		barrier1.transform.SetParent(boardHolder);
+
+
 
 
 		

@@ -17,7 +17,7 @@ public class NewBehaviourScript : MonoBehaviour {
     }
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             if (MiniMapEn)
             {

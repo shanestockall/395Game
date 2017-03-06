@@ -47,6 +47,14 @@ public class PlayerController : MonoBehaviour
 	public float nextAttack;
 	private float attackCooldown; 
 	private bool playerDead; 
+	GameObject statObject;
+	GameObject invObject; 
+	public int numHP; 
+	public int numEnergy; 
+	public Hashtable weaponsList;  
+	public int numArrows; 
+	public GameObject arrowPrefab; 
+
 
 	Item[] inventory; 
 
@@ -128,7 +136,14 @@ public class PlayerController : MonoBehaviour
 			go.SetActive (false); 
 		} 
 
+		statObject = GameObject.FindGameObjectWithTag ("Stats Text"); 
+		statObject.SetActive (false); 
+
+		invObject = GameObject.FindGameObjectWithTag ("Inventory Text"); 
+		invObject.SetActive (false); 
+
 		inventory = null; 
+		weaponsList = new Hashtable (); 
     }
 
 
@@ -155,18 +170,18 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow))
         {   
             transform.position += transform.up.normalized * speed * Time.deltaTime;
         }
 
-		if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+		if (Input.GetKey(KeyCode.DownArrow))
         {
 
             transform.position -= transform.up.normalized * speed * Time.deltaTime;
         }
 
-		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+		if (Input.GetKey(KeyCode.LeftArrow))
         {
 
             transform.position -= transform.right.normalized * -speed * Time.deltaTime;
@@ -176,7 +191,7 @@ public class PlayerController : MonoBehaviour
 			}
         }
 
-		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+		if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += transform.right.normalized * speed * Time.deltaTime;
 			if (isFlipped) {
@@ -184,45 +199,7 @@ public class PlayerController : MonoBehaviour
 				isFlipped = false;
 			}
         }
-
-		if (Input.GetKeyDown (KeyCode.J) && Time.time > nextAttack && energy.value >= 20) {
-			animator.SetTrigger ("playerChop");
-			energy.value -= 20; 
-			nextAttack = Time.time + attackCooldown;
-		}
-
-		if (energy.value != startEnergy && !sprinting) { 
-			energyCounter += 1; 
-			if (energyCounter == 100) {
-				energy.value += 10; 
-				energyCounter = 0; 
-			}
-		}
-
-		if (sprinting) { 
-			sprintCounter += 1; 
-			if (sprintCounter == 30) { 
-				energy.value -= 10; 
-				sprintCounter = 0; 
-			}
-		}
-
-		if (energy.value < 10) { 
-			sprinting = false; 
-			if (speed > 2) { 
-				speed /= 1.8f; 
-			}
-		} 
-
-		if (health.value <= 0) {
-			playerDead = true; 
-		}
-
-		if (playerDead == true) {
-			foreach(GameObject g in gameOverObjects){
-				g.SetActive (true); 
-		}
-    }
+			
 	}
 
 	internal void Update() { 
@@ -258,63 +235,134 @@ public class PlayerController : MonoBehaviour
 		}
 
 		transform.gameObject.GetComponent<Rigidbody2D> ().velocity = new Vector3 (0, 0, 0);
+
+		if (Input.GetKeyDown (KeyCode.S)) { 
+			if (statObject.activeSelf) {
+				statObject.SetActive (false);
+			} else
+				statObject.SetActive (true);
+		}
+
+		if (Input.GetKeyDown (KeyCode.I)) { 
+			if (invObject.activeSelf) {
+				invObject.SetActive (false);
+			} else
+				invObject.SetActive (true); 
+		}
+
+		statObject.GetComponent<Text> ().text = "Player Stats\nStr: " + strength.value.ToString() + "\nDex: " + dexterity.value.ToString() + "\nLuk: " + luck.value.ToString() + "\nVit: " + (startHealth / 10).ToString() + "\nEnd: " + (startEnergy / 10).ToString() + "\nHealth: " + health.value.ToString() + "\nEnergy: " + energy.value.ToString(); 
+		invObject.GetComponent<Text> ().text = "Inventory\nHP Potions: " + numHP.ToString () + "\nEnergy Potions: " + numEnergy.ToString () + "\nWeapons: " + GetInventory (weaponsList) + "\nArrows: " + numArrows.ToString ();
+
+		if (Input.GetKeyDown (KeyCode.Z) && Time.time > nextAttack && energy.value >= 20) {
+			animator.SetTrigger ("playerChop");
+			energy.value -= 20; 
+			nextAttack = Time.time + attackCooldown;
+		}
+
+		if (Input.GetKeyDown (KeyCode.X) && Time.time > nextAttack && energy.value >= 40) { 
+			ShootArrow(); 
+			energy.value -= 40; 
+			nextAttack = Time.time + attackCooldown; 
+		}
+
+		if (Input.GetKeyDown (KeyCode.C) && numHP > 0) {
+			if (health.value + 50 <= startHealth * 10) {
+				health.value += 50;
+			} else
+				health.value = (int)(startHealth * 10); 
+			numHP--; 
+		}
+
+		if (Input.GetKeyDown (KeyCode.V) && numEnergy > 0) { 
+			if (energy.value + 50 <= startEnergy * 10) {
+				energy.value += 50;
+			} else
+				energy.value = (int)(startEnergy * 10); 
+			
+			numEnergy--; 
+		}
+
+		if (energy.value != startEnergy && !sprinting) { 
+			energyCounter += 1; 
+			if (energyCounter == 100) {
+				energy.value += 10; 
+				energyCounter = 0; 
+			}
+		}
+
+		if (sprinting) { 
+			sprintCounter += 1; 
+			if (sprintCounter == 30) { 
+				energy.value -= 10; 
+				sprintCounter = 0; 
+			}
+		}
+
+		if (energy.value < 10) { 
+			sprinting = false; 
+			if (speed > 2) { 
+				speed /= 1.8f; 
+			}
+		} 
+
+		if (health.value <= 0) {
+			playerDead = true; 
+		}
+
+		if (playerDead == true) {
+			foreach (GameObject g in gameOverObjects) {
+				g.SetActive (true); 
+			}
+		}
 	}
 		
 
     //OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
     private void OnCollisionStay2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "enemy")
-        {
-			if (other.gameObject.GetComponent<EnemyController>().ded == true && Time.time >= nextAttack)
-            {
-                animator.SetTrigger("playerChop");
-                other.gameObject.SetActive(false);
-                dead++;
-                score.text = "Monsters Killed: " + dead;
+	{
+		if (other.gameObject.tag == "enemy") {
+			if (other.gameObject.GetComponent<EnemyController> ().ded == true && Time.time >= nextAttack) {
+				animator.SetTrigger ("playerChop");
+				other.gameObject.SetActive (false);
+				dead++;
+				score.text = "Monsters Killed: " + dead;
 				energy.value -= 10; 
 				nextAttack = Time.time + attackCooldown; 
-            }
+			}
 			            
-            if (dead == 5)
-            {
+			if (dead == 5) {
 				foreach (var go in GameObject.FindGameObjectsWithTag("exitwall")) {
 					go.SetActive (false);
 				}
-            }
-        }
+			}
+		}
 			
 
-        if (other.gameObject.tag == "berry")
-        {
+		if (other.gameObject.tag == "berry") {
 
-            if (other.gameObject.GetComponent<berryManager>().collected == true)
-            {
-                animator.SetTrigger("playerChop");
-                other.gameObject.SetActive(false);
-                berries++;
-                score.text = "Berries Collected: " + berries;
-            }
+			if (other.gameObject.GetComponent<berryManager> ().collected == true) {
+				animator.SetTrigger ("playerChop");
+				other.gameObject.SetActive (false);
+				berries++;
+				score.text = "Berries Collected: " + berries;
+			}
            
 
-            if (berries == 5)
-            {
+			if (berries == 5) {
 				foreach (var go in GameObject.FindGameObjectsWithTag("exitwall")) {
 					go.SetActive (false);
 				}
-            }
+			}
             
-        }
+		}
 
-		if (other.gameObject.tag == "key")
-		{
-			animator.SetTrigger("playerChop");
+		if (other.gameObject.tag == "key") {
+			animator.SetTrigger ("playerChop");
 			keys++;
 			score.text = "Keys Collected: " + keys;
 			energy.value -= 10; 
 
-			if (keys == 1)
-			{
+			if (keys == 1) {
 				foreach (var go in GameObject.FindGameObjectsWithTag("exitwall")) {
 					go.SetActive (false);
 				}
@@ -329,20 +377,57 @@ public class PlayerController : MonoBehaviour
 				go.SetActive (true); 
 			}
 		}
-			
+	}
+
+	private void OnCollisionEnter2D(Collision2D other){
+			if (other.gameObject.tag == "arrow") {
+				numArrows++;  
+				Destroy (other.gameObject);
+			}
+			if (other.gameObject.tag == "bow") {
+				weaponsList.Add ("Bow", 1); 
+				Destroy (other.gameObject);
+			}
+			if (other.gameObject.tag == "broadsword") {
+				weaponsList.Add ("Broad Sword", 1); 
+				Destroy (other.gameObject);
+			}
+			if (other.gameObject.tag == "woodsword") {
+				weaponsList.Add ("Wooden Sword", 1); 
+				Destroy (other.gameObject);
+			}
+			if (other.gameObject.tag == "healthpotion") {
+				numHP++;
+				Destroy (other.gameObject); 
+			}
+			if (other.gameObject.tag == "energypotion") {
+				numEnergy++;
+				Destroy (other.gameObject);
+			}
     }
+		
 
-
-	IEnumerator FlashSprites(SpriteRenderer sprite, int numTimes){ 
-		Color32 myColor = new Color32(255, 0, 0, 255);
-		for(var n = 0; n < numTimes; n++)
-		{
-			sprite.color = Color.white;
-			yield return new WaitForSeconds(0.05f);
-			sprite.color = myColor;
-			yield return new WaitForSeconds(0.05f);
+	private string GetInventory(Hashtable inv){
+		string output = ""; 
+	
+		if (inv.Count == 0) { 
+			return "None";
+			}
+		foreach (string key in inv.Keys){
+			int value = (int)inv[key];
+			if (value < 1) {
+			}
+			else{
+				output += (key + " " + "x" + value + ",");
+			}
 		}
-		sprite.color = Color.white;
+
+		return output; 
+	}
+
+	public void ShootArrow() { 
+		GameObject Clone; 
+		Clone = (Instantiate (arrowPrefab, transform.position+1.0f*transform.forward, transform.rotation)) as GameObject;
 	}
 
 }
