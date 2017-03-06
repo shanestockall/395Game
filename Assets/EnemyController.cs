@@ -109,12 +109,13 @@ public class EnemyController : MonoBehaviour {
 
 	}
 
-    void OnCollisionStay2D(Collision2D other)
+
+    private void OnCollisionStay2D(Collision2D other)
 	{
-		PlayerController pc = other.gameObject.GetComponent<PlayerController> (); 
-		float nextAttack = pc.nextAttack; 
-		float energyVal = pc.energy.value; 
 		if (other.gameObject.tag == "Player") {
+			PlayerController pc = other.gameObject.GetComponent<PlayerController> (); 
+			float nextAttack = pc.nextAttack; 
+			float energyVal = pc.energy.value;
 			if (Input.GetKey(KeyCode.Z) && Time.time >= nextAttack && energyVal >= 20) {
 				StopCoroutine (FlashCharacterSprites (GameObject.Find ("Player").GetComponent<SpriteRenderer> (), 3));
 				StopCoroutine (FlashEnemySprites (transform.gameObject.GetComponent<SpriteRenderer> (), 3)); 
@@ -127,6 +128,7 @@ public class EnemyController : MonoBehaviour {
 			}
 		}
 	}
+
 
     public Vector2 FindFreeLocation()
 	{

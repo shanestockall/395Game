@@ -18,7 +18,7 @@ public class MapBuilder : MonoBehaviour
 	public int exitVal;
 	public GameObject[] items;
 	public GameObject[] weapons; 
-	public GameObject[] arrows; 
+	//public GameObject[] arrows; 
 
     // Use this for initialization
     void Start()
@@ -160,9 +160,9 @@ public class MapBuilder : MonoBehaviour
 					if (Random.Range (0, 2500) <= 1) { 
 						weapon = true; 
 					}
-					if (Random.Range (0, 700) <= 1) { 
+					/*if (Random.Range (0, 700) <= 1) { 
 						arrow = true; 
-					} 
+					} */
 				}
 				else
 					toInstantiate = wallTiles[Random.Range(0, wallTiles.Length)];
@@ -180,11 +180,11 @@ public class MapBuilder : MonoBehaviour
 					weaponGO.transform.SetParent (boardHolder);
 					weapon = false;
 				}
-				if (arrow) { 
+				/*if (arrow) { 
 					GameObject arrowGO = Instantiate (arrows [0], new Vector3 (x, y, 0f), Quaternion.identity) as GameObject; 
 					arrowGO.transform.SetParent (boardHolder); 
 					arrow = false; 
-				} 
+				} */
 
 			}
 		}

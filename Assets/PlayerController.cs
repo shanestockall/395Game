@@ -51,13 +51,12 @@ public class PlayerController : MonoBehaviour
 	GameObject invObject; 
 	public int numHP; 
 	public int numEnergy; 
-	public Hashtable weaponsList;  
-	public int numArrows; 
-	public GameObject arrowPrefab; 
-
-
-	Item[] inventory; 
-
+	public List<int> broadSwordList;
+	public List<int> woodSwordList; 
+	//public List<int> bowList; 
+	//public int numArrows; 
+	//public GameObject arrowPrefab; 
+	//public Transform arrowSpawn; 
 
 
 	public bool pause = false; 
@@ -142,8 +141,9 @@ public class PlayerController : MonoBehaviour
 		invObject = GameObject.FindGameObjectWithTag ("Inventory Text"); 
 		invObject.SetActive (false); 
 
-		inventory = null; 
-		weaponsList = new Hashtable (); 
+
+		//arrowSpawn = GameObject.FindGameObjectWithTag ("arrowspawn").transform;
+
     }
 
 
@@ -251,7 +251,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		statObject.GetComponent<Text> ().text = "Player Stats\nStr: " + strength.value.ToString() + "\nDex: " + dexterity.value.ToString() + "\nLuk: " + luck.value.ToString() + "\nVit: " + (startHealth / 10).ToString() + "\nEnd: " + (startEnergy / 10).ToString() + "\nHealth: " + health.value.ToString() + "\nEnergy: " + energy.value.ToString(); 
-		invObject.GetComponent<Text> ().text = "Inventory\nHP Potions: " + numHP.ToString () + "\nEnergy Potions: " + numEnergy.ToString () + "\nWeapons: " + GetInventory (weaponsList) + "\nArrows: " + numArrows.ToString ();
+		invObject.GetComponent<Text> ().text = "Inventory\nHP Potions: " + numHP.ToString () + "\nEnergy Potions: " + numEnergy.ToString () + "\nWeapons: " + GetInventory (); //"\nArrows: " + numArrows.ToString ();
 
 		if (Input.GetKeyDown (KeyCode.Z) && Time.time > nextAttack && energy.value >= 20) {
 			animator.SetTrigger ("playerChop");
@@ -259,11 +259,11 @@ public class PlayerController : MonoBehaviour
 			nextAttack = Time.time + attackCooldown;
 		}
 
-		if (Input.GetKeyDown (KeyCode.X) && Time.time > nextAttack && energy.value >= 40) { 
+		/*if (Input.GetKeyDown (KeyCode.X) && Time.time > nextAttack && energy.value >= 40) { 
 			ShootArrow(); 
 			energy.value -= 40; 
 			nextAttack = Time.time + attackCooldown; 
-		}
+		}*/
 
 		if (Input.GetKeyDown (KeyCode.C) && numHP > 0) {
 			if (health.value + 50 <= startHealth * 10) {
@@ -313,6 +313,13 @@ public class PlayerController : MonoBehaviour
 			foreach (GameObject g in gameOverObjects) {
 				g.SetActive (true); 
 			}
+		}
+
+		if (broadSwordList.Count > 0) {
+			strength.value += 10 * broadSwordList.Count; 
+		}
+		if (woodSwordList.Count > 0) { 
+			strength.value += 10 * woodSwordList.Count; 
 		}
 	}
 		
@@ -380,20 +387,24 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void OnCollisionEnter2D(Collision2D other){
-			if (other.gameObject.tag == "arrow") {
+		/*	
+		if (other.gameObject.tag == "arrow") {
 				numArrows++;  
 				Destroy (other.gameObject);
 			}
+		*/
+		/*
 			if (other.gameObject.tag == "bow") {
 				weaponsList.Add ("Bow", 1); 
 				Destroy (other.gameObject);
 			}
+		*/
 			if (other.gameObject.tag == "broadsword") {
-				weaponsList.Add ("Broad Sword", 1); 
+				broadSwordList.Add (1);
 				Destroy (other.gameObject);
 			}
 			if (other.gameObject.tag == "woodsword") {
-				weaponsList.Add ("Wooden Sword", 1); 
+				woodSwordList.Add (1);
 				Destroy (other.gameObject);
 			}
 			if (other.gameObject.tag == "healthpotion") {
@@ -407,27 +418,31 @@ public class PlayerController : MonoBehaviour
     }
 		
 
-	private string GetInventory(Hashtable inv){
+	private string GetInventory(){
 		string output = ""; 
 	
-		if (inv.Count == 0) { 
+		if (broadSwordList.Count == 0 && woodSwordList.Count == 0) { 
 			return "None";
-			}
-		foreach (string key in inv.Keys){
-			int value = (int)inv[key];
-			if (value < 1) {
-			}
-			else{
-				output += (key + " " + "x" + value + ",");
-			}
 		}
 
+		if (broadSwordList.Count > 0) { 
+			output += ("\nBroad Sword x" + broadSwordList.Count.ToString()); 
+		}
+
+		if (woodSwordList.Count > 0) { 
+			output += ("\nWood Sword x" + woodSwordList.Count.ToString ());
+		}
+			
 		return output; 
 	}
-
+	/*
 	public void ShootArrow() { 
 		GameObject Clone; 
-		Clone = (Instantiate (arrowPrefab, transform.position+1.0f*transform.forward, transform.rotation)) as GameObject;
-	}
+		Clone = (Instantiate (arrowPrefab, arrowSpawn)) as GameObject;
 
+		Clone.GetComponent<Rigidbody2D> ().velocity = Clone.transform.forward * 5f; 
+
+		Destroy (Clone, 3f); 
+	}
+   */
 }

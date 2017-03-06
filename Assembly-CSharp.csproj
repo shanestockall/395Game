@@ -46,7 +46,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ArrowController.cs" />
      <Compile Include="Assets\Completed\Scripts\BoardManager.cs" />
      <Compile Include="Assets\Completed\Scripts\Camera.cs" />
      <Compile Include="Assets\Completed\Scripts\Enemy.cs" />
