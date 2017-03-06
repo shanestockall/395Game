@@ -89,6 +89,7 @@
     <Compile Include="Assets\GameManager.cs" />
     <Compile Include="Assets\HealthBarController.cs" />
     <Compile Include="Assets\Inventory.cs" />
+    <Compile Include="Assets\InventoryEditor.cs" />
     <Compile Include="Assets\Item.cs" />
     <Compile Include="Assets\MapBuilder.cs" />
     <Compile Include="Assets\NewBehaviourScript.cs" />
