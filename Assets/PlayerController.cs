@@ -382,7 +382,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		if (other.gameObject.tag == "exit") {
-			SceneManager.LoadScene (sm.scene);
+			SceneManager.LoadScene (4);
 			var wallList = GameObject.FindGameObjectsWithTag ("exitwall"); 
 			foreach (var go in wallList) {
 				go.SetActive (true); 

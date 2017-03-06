@@ -118,11 +118,10 @@ public class SuperBasicGeneratorScript : MonoBehaviour
             pro_name + " was wandering through the {0} " + place + " but got caught in a trap! "
         };
         tasks = new string[] {
-            //"Find 5 berries and bring them to the beggar.",
-            //"Find the object to get stronger.",
+            "Find 5 berries.",
             "Kill 5 monsters.",
             //"Escape the maze before time runs out.",
-            //"Find the key to the next room"
+            "Find the key to the next room", 
         };
 
         rtasks = UnityEngine.Random.Range(0, tasks.Length);
@@ -170,6 +169,20 @@ public class SuperBasicGeneratorScript : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 SceneManager.LoadScene(1);
+            }
+        }
+        if (keyTask == "Find 5 berries.")
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                SceneManager.LoadScene(2);
+            }
+        }
+        if (keyTask == "Find the key to the next room")
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                SceneManager.LoadScene(3);
             }
         }
     }
