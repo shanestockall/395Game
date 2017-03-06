@@ -16,22 +16,13 @@ public class berryManager : MonoBehaviour {
     //OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (Input.GetKey(KeyCode.X))
-        {
-            collected = true;
-        }
+		//Check if the tag of the trigger collided with is Exit.
+		if (other.gameObject.tag == "Player")
+		{
+			gameObject.SetActive(false);
+			collected = true; 
+		}
 
-    }
-
-    void OnCollisionStay2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            if (Input.GetKey(KeyCode.K))
-            {
-                collected = true;
-            }
-        }
     }
 
     public Vector2 FindFreeLocation()

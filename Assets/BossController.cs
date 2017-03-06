@@ -46,12 +46,12 @@ public class BossController : MonoBehaviour {
         Vector2[] directions = { transform.right.normalized, transform.up.normalized, -1 * transform.right.normalized, -1 * transform.up.normalized };
         int rand;
 
-		if (Mathf.Abs(Vector3.Distance(transform.position, GameObject.Find("Player").transform.position)) < 1){
+		if (Mathf.Abs(Vector3.Distance(transform.position, GameObject.Find("Player").transform.position)) < 3){
 
 			attackTimer += 1; 
 
 
-			if (attackTimer >= 100) {
+			if (attackTimer >= 75) {
 				GameObject.Find ("Player").GetComponent<PlayerController> ().health.value -= 40; 
 				animator.SetTrigger ("enemyAttack");
 				StopCoroutine (FlashEnemySprites (transform.gameObject.GetComponent<SpriteRenderer> (), 3)); 
