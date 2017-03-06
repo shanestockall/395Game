@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SuperBasicGeneratorScript : MonoBehaviour
 {
     public Text storyText;
     public Text motivationText;
+    public Text taskText;
     public static string pro_name;
     public static string ant_name;
     public static string conflict;
@@ -116,11 +118,11 @@ public class SuperBasicGeneratorScript : MonoBehaviour
             pro_name + " was wandering through the {0} " + place + " but got caught in a trap! "
         };
         tasks = new string[] {
-            "Find 5 berries and bring them to the beggar.",
-            "Find the object to get stronger.",
+            //"Find 5 berries and bring them to the beggar.",
+            //"Find the object to get stronger.",
             "Kill 5 monsters.",
-            "Escape the maze before time runs out.",
-            "Find the key to the next room"
+            //"Escape the maze before time runs out.",
+            //"Find the key to the next room"
         };
 
         rtasks = UnityEngine.Random.Range(0, tasks.Length);
@@ -139,7 +141,7 @@ public class SuperBasicGeneratorScript : MonoBehaviour
             String.Format(motivations[motNum], reshuffle(adjectives));
 
         middleOutp = String.Format(middles[rmiddles], reshuffle(adjectives)) +
-            tasks[rmiddles];
+            tasks[rtasks];
 
         climaxOutp = pro_name + " is finally ready to take on " + ant_name + ". Find the key to move on to the next room and challenge your greatest foe.";
 
@@ -149,6 +151,9 @@ public class SuperBasicGeneratorScript : MonoBehaviour
 
         if (storyText != null)
             storyText.text = middleOutp;
+
+        if (taskText != null)
+            taskText.text = keyTask;
 
         scene += 1;
 
@@ -160,7 +165,13 @@ public class SuperBasicGeneratorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (keyTask == "Kill 5 monsters.")
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                SceneManager.LoadScene(1);
+            }
+        }
     }
 
     int selectWeightedRandom(Dictionary<int, int[]> weightDict, int key)
@@ -202,3 +213,4 @@ public class SuperBasicGeneratorScript : MonoBehaviour
     }
 
 }
+

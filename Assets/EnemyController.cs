@@ -66,13 +66,18 @@ public class EnemyController : MonoBehaviour {
 			timer--;
 		else
 		{
-			timer = 30;
+            timer = 30;
             rand = Random.Range(0, directions.Length);
             rigi.velocity += directions[rand] * Time.deltaTime * 5;
-			if (transform.position.x > 30 || transform.position.x < 0 || transform.position.y > 30 || transform.position.y < 0)
-				transform.position = FindFreeLocation();
-            
-		}
+            if (Mathf.Abs(Vector3.Distance(gameObject.transform.position, GameObject.Find("Player").transform.position)) <= 5)
+            {
+                Debug.Log(Mathf.Abs(Vector3.Distance(gameObject.transform.position, GameObject.Find("Player").transform.position)));
+                gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, GameObject.Find("Player").transform.position, 0.01f);
+                if (transform.position.x > 30 || transform.position.x < 0 || transform.position.y > 30 || transform.position.y < 0)
+                    transform.position = FindFreeLocation();
+            }
+
+        }
 
 	}
 
