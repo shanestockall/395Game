@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     int berries = 0;
     int keys = 0;
     float speed; 
-	public int gameType; 
 
 	// stats stuff
 	Stat[] stats;
@@ -110,7 +109,6 @@ public class PlayerController : MonoBehaviour
     // Use this forinitialization
     void Start()
     {
-		gameType = 1; 
         animator = GetComponent<Animator>();
         GameObject g= GameObject.FindWithTag("enemy");
         ec = g.GetComponent<EnemyController>();
@@ -205,23 +203,6 @@ public class PlayerController : MonoBehaviour
 	}
 
 	internal void Update() { 
-
-		if (gameType == 1) { 
-			score.text = "Monsters Killed: 0";
-		}
-		if (gameType == 2) { 
-			score.text = "Berries Collected: 0";
-		}
-		if (gameType == 3) { 
-			score.text = "Find the key!"; 
-		} 
-		if (gameType == 4) {
-			score.text = "Solve the puzzle!"; 
-		} 
-		if (gameType == 5) { 
-			score.text = "Kill the boss!"; 
-		}
-
 		if (Input.GetKeyDown(KeyCode.Escape)) { 
 			pause = !pause; 
 
@@ -344,17 +325,10 @@ public class PlayerController : MonoBehaviour
 				animator.SetTrigger ("playerChop");
 				other.gameObject.SetActive (false);
 				dead++;
-				score.text = "Kill the boss!";
+				
 				energy.value -= 10; 
 				nextAttack = Time.time + attackCooldown; 
 			}
-
-			if (other.gameObject.GetComponent<BossController> ().health <= 0) {
-				foreach (var go in GameObject.FindGameObjectsWithTag("exitwall")) {
-					go.SetActive (false);
-				}
-			}
-				
 		}
 
 		if (other.gameObject.tag == "enemy") {
@@ -362,9 +336,7 @@ public class PlayerController : MonoBehaviour
 				animator.SetTrigger ("playerChop");
 				other.gameObject.SetActive (false);
 				dead++;
-				if (gameType == 1) {
-					score.text = "Monsters Killed: " + dead;
-				}
+				
 				energy.value -= 10; 
 				nextAttack = Time.time + attackCooldown; 
 			}
@@ -377,13 +349,13 @@ public class PlayerController : MonoBehaviour
 		}
 			
 
-		if (other.gameObject.tag == "berry" && gameType == 2) {
+		if (other.gameObject.tag == "berry") {
 
 			if (other.gameObject.GetComponent<berryManager> ().collected == true) {
 				animator.SetTrigger ("playerChop");
 				other.gameObject.SetActive (false);
 				berries++;
-				score.text = "Berries Collected: " + berries;
+				
 			}
            
 
@@ -395,10 +367,10 @@ public class PlayerController : MonoBehaviour
             
 		}
 
-		if (other.gameObject.tag == "key" && gameType == 3) {
+		if (other.gameObject.tag == "key") {
 			animator.SetTrigger ("playerChop");
 			keys++;
-			score.text = "Keys Collected: " + keys;
+			
 			energy.value -= 10; 
 
 			if (keys == 1) {
@@ -410,8 +382,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		if (other.gameObject.tag == "exit") {
-			gameType = 5; 
-			SceneManager.LoadScene (4);
+			SceneManager.LoadScene (sm.scene);
 			var wallList = GameObject.FindGameObjectsWithTag ("exitwall"); 
 			foreach (var go in wallList) {
 				go.SetActive (true); 

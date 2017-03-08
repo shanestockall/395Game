@@ -19,7 +19,6 @@ public class SuperBasicGeneratorScript : MonoBehaviour
     public static string gendered_royalty;
     public static bool firstFlag = true;
     public static int scene = 0;
-	public GameObject player; 
 
     // Initialize Vocabulary
     string[] adjectives = new string[] { "dark", "stormy", "clear", "beautiful", "scary", "pretty", "magical" };
@@ -68,7 +67,6 @@ public class SuperBasicGeneratorScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		player = GameObject.Find ("Player");
 
         if (firstFlag == true)
         {
@@ -141,8 +139,7 @@ public class SuperBasicGeneratorScript : MonoBehaviour
             conflicts[confNum] +
             String.Format(motivations[motNum], reshuffle(adjectives));
 
-        middleOutp = String.Format(middles[rmiddles], reshuffle(adjectives)) +
-            tasks[rtasks];
+        middleOutp = String.Format(middles[rmiddles], reshuffle(adjectives));
 
         climaxOutp = pro_name + " is finally ready to take on " + ant_name + ". Find the key to move on to the next room and challenge your greatest foe.";
 
@@ -166,30 +163,7 @@ public class SuperBasicGeneratorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (keyTask == "Kill 5 monsters.")
-        {
-			player.GetComponent<PlayerController> ().gameType = 1; 
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                SceneManager.LoadScene(1);
-            }
-        }
-        if (keyTask == "Find 5 berries.")
-        {
-			player.GetComponent<PlayerController> ().gameType = 2; 
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                SceneManager.LoadScene(2);
-            }
-        }
-        if (keyTask == "Find the key to the next room")
-        {
-			player.GetComponent<PlayerController> ().gameType = 3; 
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                SceneManager.LoadScene(3);
-            }
-        }
+        
     }
 
     int selectWeightedRandom(Dictionary<int, int[]> weightDict, int key)

@@ -14,7 +14,10 @@ public class sceneMan : MonoBehaviour
     // Updates once per frame
     void Update()
     {
-
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            SceneManager.LoadScene(scene);
+        }
 
     }
 
