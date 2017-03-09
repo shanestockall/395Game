@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour {
 	int attackTimer;
 	private Animator animator; 
 	private SpriteRenderer renderer;
+	public bool isFlipped;
 
 
 
@@ -31,6 +32,7 @@ public class EnemyController : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
+		isFlipped = false;
 		animator = GetComponent<Animator>();
 		transform.position = FindFreeLocation();
 		timer = 30;
@@ -54,8 +56,6 @@ public class EnemyController : MonoBehaviour {
 			if (attackTimer >= 100) {
 				GameObject.Find ("Player").GetComponent<PlayerController> ().health.value -= 10; 
 				animator.SetTrigger ("enemyAttack");
-				StopCoroutine (FlashEnemySprites (transform.gameObject.GetComponent<SpriteRenderer> (), 3)); 
-				StopCoroutine (FlashCharacterSprites (GameObject.Find ("Player").GetComponent<SpriteRenderer> (), 3));
 				StartCoroutine (FlashCharacterSprites (GameObject.Find ("Player").GetComponent<SpriteRenderer> (), 3));
 
 				attackTimer = 0; 
@@ -78,6 +78,16 @@ public class EnemyController : MonoBehaviour {
 
         }
 
+		if (transform.position.x > GameObject.Find ("Player").transform.position.x) { 
+			isFlipped = false; 
+		} else
+			isFlipped = true; 
+
+		if (isFlipped) {
+			transform.localRotation = Quaternion.Euler (0f, 180f, 0f);
+		} else
+			transform.localRotation = Quaternion.Euler (0f, 0f, 0f); 
+		
 	}
 
  
@@ -92,8 +102,6 @@ public class EnemyController : MonoBehaviour {
 			float nextAttack = pc.nextAttack; 
 			float energyVal = pc.energy.value; 
 			if (Input.GetKey(KeyCode.Z) && Time.time >= nextAttack && energyVal >= 20){
-				StopCoroutine (FlashCharacterSprites (GameObject.Find ("Player").GetComponent<SpriteRenderer> (), 3));
-				StopCoroutine (FlashEnemySprites (transform.gameObject.GetComponent<SpriteRenderer> (), 3));
 				StartCoroutine(FlashEnemySprites(transform.gameObject.GetComponent<SpriteRenderer>(), 3));
 
 				transform.gameObject.GetComponent<EnemyController>().health -= 10f + other.gameObject.GetComponent<PlayerController>().strength.value;
@@ -121,8 +129,6 @@ public class EnemyController : MonoBehaviour {
 			float nextAttack = pc.nextAttack; 
 			float energyVal = pc.energy.value;
 			if (Input.GetKey(KeyCode.Z) && Time.time >= nextAttack && energyVal >= 20) {
-				StopCoroutine (FlashCharacterSprites (GameObject.Find ("Player").GetComponent<SpriteRenderer> (), 3));
-				StopCoroutine (FlashEnemySprites (transform.gameObject.GetComponent<SpriteRenderer> (), 3)); 
 				StartCoroutine(FlashEnemySprites(transform.gameObject.GetComponent<SpriteRenderer>(), 3));
 				transform.gameObject.GetComponent<EnemyController>().health -= 10f + other.gameObject.GetComponent<PlayerController>().strength.value;
 				Debug.Log (health);

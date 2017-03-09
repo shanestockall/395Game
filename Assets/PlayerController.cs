@@ -136,10 +136,10 @@ public class PlayerController : MonoBehaviour
 		} 
 
 		statObject = GameObject.FindGameObjectWithTag ("Stats Text"); 
-		statObject.SetActive (false); 
+		statObject.SetActive (true); 
 
 		invObject = GameObject.FindGameObjectWithTag ("Inventory Text"); 
-		invObject.SetActive (false); 
+		invObject.SetActive (true); 
 
 
 		//arrowSpawn = GameObject.FindGameObjectWithTag ("arrowspawn").transform;

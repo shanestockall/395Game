@@ -1,19 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PlayerController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/chestManager.cs">
     <Files>
-      <File FileName="Assets/MapBuilder.cs" Line="160" Column="41" />
-      <File FileName="Assets/StatsManager.cs" Line="24" Column="41" />
-      <File FileName="Assets/EnemyController.cs" Line="1" Column="1" />
-      <File FileName="Assets/PlayerController.cs" Line="140" Column="1" />
+      <File FileName="Assets/MapBuilder.cs" Line="1" Column="1" />
+      <File FileName="Assets/StatsManager.cs" Line="1" Column="1" />
       <File FileName="Assets/HealthBarController.cs" Line="1" Column="1" />
       <File FileName="Assets/Item.cs" Line="1" Column="1" />
       <File FileName="Assets/Stat.cs" Line="1" Column="1" />
       <File FileName="Assets/Inventory.cs" Line="1" Column="1" />
-      <File FileName="Assets/berryManager.cs" Line="38" Column="6" />
+      <File FileName="Assets/berryManager.cs" Line="1" Column="1" />
       <File FileName="Assets/InventoryEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets/NewBehaviourScript.cs" Line="14" Column="18" />
-      <File FileName="Assets/ArrowController.cs" Line="29" Column="44" />
+      <File FileName="Assets/NewBehaviourScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/EnemyController.cs" Line="195" Column="43" />
+      <File FileName="Assets/PlayerController.cs" Line="190" Column="3" />
+      <File FileName="Assets/chestManager.cs" Line="31" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

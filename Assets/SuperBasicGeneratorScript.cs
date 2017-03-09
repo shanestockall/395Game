@@ -10,6 +10,8 @@ public class SuperBasicGeneratorScript : MonoBehaviour
     public Text storyText;
     public Text motivationText;
     public Text taskText;
+    public Text climaxText;
+    public Text endText;
     public static string pro_name;
     public static string ant_name;
     public static string conflict;
@@ -18,7 +20,7 @@ public class SuperBasicGeneratorScript : MonoBehaviour
     public static string time;
     public static string gendered_royalty;
     public static bool firstFlag = true;
-    public static int scene = 0;
+    public int riddleNum;
 
     // Initialize Vocabulary
     string[] adjectives = new string[] { "dark", "stormy", "clear", "beautiful", "scary", "pretty", "magical" };
@@ -33,6 +35,7 @@ public class SuperBasicGeneratorScript : MonoBehaviour
     string[] names_royalty = new string[] { "prince", "princess", "duke", "duchess", "king", "queen", "jester" };
     string[] places = new string[] { "woods", "penthouse loft", "randomly generated cave" };
     string[] times = new string[] { "morning", "afternoon", "night", "day", "evening" };
+    string[] riddles = new string[] { "follow the Songs of Earth.", "follow the Neverending Echoes.", "follow the Necromancer's Wailing." };
 
     string[] motivations;
 
@@ -49,9 +52,10 @@ public class SuperBasicGeneratorScript : MonoBehaviour
     string outp;
     string middleOutp;
     string climaxOutp;
+    string endOutp;
     string keyTask;
     string keyMotivation;
-
+    
     int confNum;
     int[] conf1Weights;
     int[] conf2Weights;
@@ -77,8 +81,10 @@ public class SuperBasicGeneratorScript : MonoBehaviour
             ant_name = names_antagonist[UnityEngine.Random.Range(0, names_antagonist.Length)];
             time = times[UnityEngine.Random.Range(0, times.Length)];
             gendered_royalty = names_royalty[UnityEngine.Random.Range(0, names_royalty.Length)];
+            riddleNum = UnityEngine.Random.Range(0, riddles.Length);
 
         }
+
 
         setting = "It is a {0} " + time + ". ";
 
@@ -113,21 +119,20 @@ public class SuperBasicGeneratorScript : MonoBehaviour
 
         middles = new string[] {
             pro_name + " meets a mysterious beggar. He offers information on " + ant_name + " in exhange for food. ",
-            pro_name + " fears he is not strong enough to defeat " + ant_name + ". He has heard tale of a {0}, {1} sword that may aid him in the battle to come. ",
             pro_name + " fears he is not strong enough to defeat " + ant_name + ". to prepare for the upcoming battle, first he must train. ",
             pro_name + " was wandering through the {0} " + place + " but got caught in a trap! "
         };
         tasks = new string[] {
             "Find 5 berries.",
             "Kill 5 monsters.",
-            //"Escape the maze before time runs out.",
+            "Find the secret to opening the door in one of the chests. Open the right one or else... \n" + riddles[riddleNum],
             "Find the key to the next room", 
         };
 
         rtasks = UnityEngine.Random.Range(0, tasks.Length);
         rmotivations = UnityEngine.Random.Range(0, motivations.Length);
         rmiddles = UnityEngine.Random.Range(0, middles.Length);
-
+        rtasks = rmiddles;
 
         keyTask = tasks[rtasks];
         Debug.Log(keyTask);
@@ -139,10 +144,12 @@ public class SuperBasicGeneratorScript : MonoBehaviour
             conflicts[confNum] +
             String.Format(motivations[motNum], reshuffle(adjectives));
 
-        middleOutp = String.Format(middles[rmiddles], reshuffle(adjectives));
+        middleOutp = String.Format(middles[rmiddles], reshuffle(adjectives)) +
+            tasks[rtasks];
 
         climaxOutp = pro_name + " is finally ready to take on " + ant_name + ". Find the key to move on to the next room and challenge your greatest foe.";
 
+        endOutp = "Hooray! " + pro_name + " has defeated " + ant_name + " and completed his journey.";
 
         if (motivationText != null)
             motivationText.text = outp;
@@ -153,8 +160,12 @@ public class SuperBasicGeneratorScript : MonoBehaviour
         if (taskText != null)
             taskText.text = keyTask;
 
-        scene += 1;
+        if (climaxText != null)
+            climaxText.text = climaxOutp;
 
+        if (endText != null)
+            endText.text = endOutp;
+        
         firstFlag = false;
 
 
@@ -163,7 +174,27 @@ public class SuperBasicGeneratorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (rtasks == 1)
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                SceneManager.LoadScene(1);
+            }
+        }
+        if (rtasks == 0)
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                SceneManager.LoadScene(2);
+            }
+        }
+        if (rtasks == 3)
+        {
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                SceneManager.LoadScene(3);
+            }
+        }
     }
 
     int selectWeightedRandom(Dictionary<int, int[]> weightDict, int key)
