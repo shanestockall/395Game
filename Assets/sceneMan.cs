@@ -10,7 +10,7 @@ public class sceneMan : MonoBehaviour
 
     private bool loadScene = false;
     public int scene;
-   
+
     // Updates once per frame
     void Update()
     {
@@ -19,6 +19,9 @@ public class sceneMan : MonoBehaviour
             SceneManager.LoadScene(scene);
         }
 
+		if (scene == 11 || scene == 1) { 
+			PlayerPrefs.DeleteAll ();
+		}
     }
 
 

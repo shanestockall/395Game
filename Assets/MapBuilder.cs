@@ -135,6 +135,7 @@ public class MapBuilder : MonoBehaviour
 		bool potion = false; 
 		bool weapon = false; 
 		bool arrow = false; 
+		PlayerController pc = GameObject.Find ("Player").GetComponent<PlayerController> ();
 
 		exitVal = (int)Random.Range (1, GRID_HEIGHT);
 
@@ -153,11 +154,11 @@ public class MapBuilder : MonoBehaviour
 					}
 				} else if (cellMap [x, y]) {
 					toInstantiate = floorTiles [Random.Range (0, floorTiles.Length)];
-					if (Random.Range (0, 500) <= 1) { 
+					if (Random.Range (0, 1500) <= 1) { 
 						potion = true; 
 
 					}
-					if (Random.Range (0, 2500) <= 1) { 
+					if (Random.Range (0, 3000) <= 1) { 
 						weapon = true; 
 					}
 					/*if (Random.Range (0, 700) <= 1) { 

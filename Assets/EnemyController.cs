@@ -101,7 +101,7 @@ public class EnemyController : MonoBehaviour {
 			PlayerController pc = other.gameObject.GetComponent<PlayerController> (); 
 			float nextAttack = pc.nextAttack; 
 			float energyVal = pc.energy.value; 
-			if (Input.GetKey(KeyCode.Z) && Time.time >= nextAttack && energyVal >= 20){
+			if (Input.GetKey(KeyCode.Z) && Time.time >= nextAttack && energyVal >= 10){
 				StartCoroutine(FlashEnemySprites(transform.gameObject.GetComponent<SpriteRenderer>(), 3));
 
 				transform.gameObject.GetComponent<EnemyController>().health -= 10f + other.gameObject.GetComponent<PlayerController>().strength.value;
@@ -128,7 +128,7 @@ public class EnemyController : MonoBehaviour {
 			PlayerController pc = other.gameObject.GetComponent<PlayerController> (); 
 			float nextAttack = pc.nextAttack; 
 			float energyVal = pc.energy.value;
-			if (Input.GetKey(KeyCode.Z) && Time.time >= nextAttack && energyVal >= 20) {
+			if (Input.GetKey(KeyCode.Z) && Time.time >= nextAttack && energyVal >= 10) {
 				StartCoroutine(FlashEnemySprites(transform.gameObject.GetComponent<SpriteRenderer>(), 3));
 				transform.gameObject.GetComponent<EnemyController>().health -= 10f + other.gameObject.GetComponent<PlayerController>().strength.value;
 				Debug.Log (health);

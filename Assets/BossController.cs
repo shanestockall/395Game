@@ -17,6 +17,8 @@ public class BossController : MonoBehaviour {
 	private Animator animator; 
 	private SpriteRenderer renderer;
 
+	public bool isFlipped; 
+
 
 
     void Awake()
@@ -37,6 +39,7 @@ public class BossController : MonoBehaviour {
 
 		attackTimer = 0; 
 		renderer = transform.gameObject.GetComponent<SpriteRenderer> ();
+		isFlipped = false; 
 		
 	}
 
@@ -77,6 +80,16 @@ public class BossController : MonoBehaviour {
 			}
 
         }
+
+		if (transform.position.x > GameObject.Find ("Player").transform.position.x) { 
+			isFlipped = false; 
+		} else
+			isFlipped = true; 
+
+		if (isFlipped) {
+			transform.localRotation = Quaternion.Euler (0f, 180f, 0f);
+		} else
+			transform.localRotation = Quaternion.Euler (0f, 0f, 0f);
 
 	}
 

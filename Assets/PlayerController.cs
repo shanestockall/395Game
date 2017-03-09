@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     int keys = 0;
     float speed; 
 
+
 	// stats stuff
 	Stat[] stats;
 	GameObject[] gameOverObjects; 
@@ -56,66 +57,111 @@ public class PlayerController : MonoBehaviour
 	//public List<int> bowList; 
 	//public int numArrows; 
 	//public GameObject arrowPrefab; 
-	//public Transform arrowSpawn; 
-
+	//public Transform arrowSpawn;
 
 	public bool pause = false; 
 	public bool isFlipped = false;
     public bool monsters = false;
 	public bool sprinting = false; 
 
-	public GameManager gm;  
+	public GameManager gm;
 
 	void Awake() { 
-		totalStat = Random.Range (20, 35); 
-		statsLeft = totalStat; 
 
-		healthCount = Random.Range (0, statsLeft); 
+		if (!PlayerPrefs.HasKey("health")) {
+			totalStat = Random.Range (20, 35); 
+			statsLeft = totalStat; 
 
-		statsLeft -= healthCount; 
+			healthCount = Random.Range (0, statsLeft); 
 
-		energyCount = Random.Range (0, statsLeft); 
+			statsLeft -= healthCount; 
 
-		statsLeft -= energyCount; 
+			energyCount = Random.Range (0, statsLeft); 
 
-		strengthCount = Random.Range (0, statsLeft);
+			statsLeft -= energyCount; 
 
-		statsLeft -= strengthCount; 
+			strengthCount = Random.Range (0, statsLeft);
 
-		dexterityCount = Random.Range (0, statsLeft);
+			statsLeft -= strengthCount; 
 
-		statsLeft -= dexterityCount; 
+			dexterityCount = Random.Range (0, statsLeft);
 
-		luckCount = statsLeft; 
+			statsLeft -= dexterityCount; 
 
-		startStats [0] = new Stat ("Health", 100+ healthCount * 10, 1);
-		startStats [1] = new Stat ("Energy", 100 + energyCount * 10, 1);
-		startStats [2] = new Stat ("Strength", strengthCount, 1);
-		startStats [3] = new Stat ("Dexterity", dexterityCount, 1);
-		startStats [4] = new Stat ("Luck", luckCount, 1);
+			luckCount = statsLeft; 
 
-		health = startStats [0]; 
-		startHealth = (float)health.value;
-		energy = startStats [1];
-		startEnergy = energy.value; 
-		strength = startStats [2];
-		startStrength = strength.value; 
-		dexterity = startStats [3]; 
-		startDexterity = dexterity.value; 
-		luck = startStats [4];
-		startLuck = luck.value; 
+			startStats [0] = new Stat ("Health", 100 + healthCount * 10, 1);
+			startStats [1] = new Stat ("Energy", 100 + energyCount * 10, 1);
+			startStats [2] = new Stat ("Strength", strengthCount, 1);
+			startStats [3] = new Stat ("Dexterity", dexterityCount, 1);
+			startStats [4] = new Stat ("Luck", luckCount, 1);
+
+			health = startStats [0]; 
+			startHealth = health.value;
+			energy = startStats [1];
+			startEnergy = energy.value; 
+			strength = startStats [2];
+			startStrength = strength.value; 
+			dexterity = startStats [3]; 
+			startDexterity = dexterity.value; 
+			luck = startStats [4];
+			startLuck = luck.value; 
+
+			PlayerPrefs.SetInt ("health", health.value); 
+			PlayerPrefs.SetInt ("energy", energy.value); 
+			PlayerPrefs.SetInt ("strength", strength.value); 
+			PlayerPrefs.SetInt ("dexterity", dexterity.value); 
+			PlayerPrefs.SetInt ("luck", luck.value);
+			PlayerPrefs.SetInt ("firststart", 0);
+			PlayerPrefs.SetInt ("woodsword", 0); 
+			PlayerPrefs.SetInt ("broadsword", 0); 
+
+
+		} else {
+			
+			startStats [0] = new Stat ("Health", PlayerPrefs.GetInt("health"), 1);
+			startStats [1] = new Stat ("Energy", PlayerPrefs.GetInt("energy"), 1);
+			startStats [2] = new Stat ("Strength", PlayerPrefs.GetInt("strength"), 1);
+			startStats [3] = new Stat ("Dexterity", PlayerPrefs.GetInt("dexterity"), 1);
+			startStats [4] = new Stat ("Luck", PlayerPrefs.GetInt("luck"), 1);
+
+			health = startStats [0]; 
+			startHealth = (float)health.value;
+			energy = startStats [1];
+			startEnergy = energy.value; 
+			strength = startStats [2];
+			startStrength = strength.value; 
+			dexterity = startStats [3]; 
+			startDexterity = dexterity.value; 
+			luck = startStats [4];
+			startLuck = luck.value;
+
+			if (PlayerPrefs.GetInt ("broadsword") != 0) {
+				for (int i = 0; i < PlayerPrefs.GetInt ("broadsword"); i++) {
+					broadSwordList.Add (1);
+				}
+			}
+			if (PlayerPrefs.GetInt ("woodsword") != 0) {
+				for (int i = 0; i < PlayerPrefs.GetInt ("woodsword"); i++) {
+					woodSwordList.Add (1);
+				}
+			}
+		}
+
 	}
 
     // Use this forinitialization
     void Start()
     {
-        animator = GetComponent<Animator>();
-        GameObject g= GameObject.FindWithTag("enemy");
-        ec = g.GetComponent<EnemyController>();
+		
+		animator = GetComponent<Animator>();
+		GameObject g = GameObject.FindWithTag("enemy");
+		ec = g.GetComponent<EnemyController>();
 
-        g = GameObject.Find("Scene Manager");
-        sm = g.GetComponent<sceneMan>();
 		gm = GetComponent<GameManager> ();
+
+		g = GameObject.Find ("Scene Manager");
+		sm = g.GetComponent<sceneMan>();
 
         speed = 2f;
 		energyCounter = 0;
@@ -230,7 +276,8 @@ public class PlayerController : MonoBehaviour
 		}
 
 		if (Input.GetKeyDown(KeyCode.R)) { 
-			SceneManager.LoadScene (0);
+			SceneManager.LoadScene (1);
+			PlayerPrefs.DeleteAll ();
 			Time.timeScale = 1.0f; 
 		}
 
@@ -429,14 +476,20 @@ public class PlayerController : MonoBehaviour
 	
 		if (broadSwordList.Count == 0 && woodSwordList.Count == 0) { 
 			return "None";
+			PlayerPrefs.SetInt ("broadsword", 0);
+			PlayerPrefs.SetInt ("woodsword", 0); 
 		}
 
 		if (broadSwordList.Count > 0) { 
 			output += ("\nBroad Sword x" + broadSwordList.Count.ToString()); 
+			PlayerPrefs.SetInt ("broadsword", broadSwordList.Count);
+			PlayerPrefs.SetInt ("strength", PlayerPrefs.GetInt ("strength") + 10 * broadSwordList.Count);
 		}
 
 		if (woodSwordList.Count > 0) { 
 			output += ("\nWood Sword x" + woodSwordList.Count.ToString ());
+			PlayerPrefs.SetInt ("woodsword", woodSwordList.Count); 
+			PlayerPrefs.SetInt ("strength", PlayerPrefs.GetInt ("strength") + 5 * woodSwordList.Count);
 		}
 			
 		return output; 
